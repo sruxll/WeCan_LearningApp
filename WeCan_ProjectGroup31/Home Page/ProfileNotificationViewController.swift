@@ -6,24 +6,40 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileNotificationViewController: UIViewController {
+    
+    var profileNotification = ProfileNotificationView()
+    var currentUser: FirebaseAuth.User?
+    
+    override func loadView() {
+        view = profileNotification
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "profile_background")!)
+//        self.view.layer.contents = UIImage(named: "profile_background")!.cgImage
 
         // Do any additional setup after loading the view.
+        profileNotification.buttonLogout.addTarget(self, action: #selector(onLogoutButtonTapped), for: .touchUpInside)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        
+//        profileNotification.profileBackground.frame = self.view.bounds
+//    }
+    @objc func onLogoutButtonTapped(){
+        NotificationCenter.default.post(name: .userLogout, object: "")
     }
-    */
+    
+    func displayUserProfile(){
+        profileNotification.labelUsername.text = currentUser?.displayName
+        if let url = currentUser?.photoURL{
+            profileNotification.profilePhoto.loadRemoteImage(from: url)
+        }
+    }
 
 }

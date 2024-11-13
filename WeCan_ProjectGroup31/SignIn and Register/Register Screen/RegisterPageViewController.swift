@@ -12,6 +12,7 @@ import FirebaseStorage
 class RegisterPageViewController: UIViewController {
 
     let registerPage = RegisterPageView()
+    let childProgressView = ProgressSpinnerViewController()
     // store the picked image
     var pickedImage: UIImage?
     let storage = Storage.storage()
@@ -62,7 +63,8 @@ class RegisterPageViewController: UIViewController {
     }
     
     @objc func onSignUpButtonTapped(){
-        
+        showActivityIndicator()
+        uploadProfilePhotoToStorage()
     }
     
     @objc func onSignInButtonTapped(){
@@ -107,4 +109,19 @@ extension RegisterPageViewController: UINavigationControllerDelegate, UIImagePic
             return
         }
     }
+}
+
+extension RegisterPageViewController: ProgressSpinnerDelegate{
+    func showActivityIndicator() {
+        addChild(childProgressView)
+        view.addSubview(childProgressView.view)
+        childProgressView.didMove(toParent: self)
+    }
+    
+    func hideActivityIndicator() {
+        childProgressView.willMove(toParent: nil)
+        childProgressView.view.removeFromSuperview()
+        childProgressView.removeFromParent()
+    }
+    
 }
