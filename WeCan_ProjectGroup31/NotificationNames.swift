@@ -17,4 +17,8 @@ extension Notification.Name{
     static let userJumpToSignIn = Notification.Name("userJumpToSignIn")
     
     static let userJumpToSignUp = Notification.Name("userJumpToSignUp")
+    
+    static let userForgotPassword = Notification.Name("userForgotPassword")
+    
+    static let userPasswordReset = Notification.Name("userPasswordReset")
 }

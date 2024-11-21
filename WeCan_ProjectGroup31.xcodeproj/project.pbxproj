@@ -13,6 +13,8 @@
 		221321A92CBF6CE50067FD75 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 221321A82CBF6CE50067FD75 /* Base */; };
 		221321AB2CBF6CE50067FD75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 221321AA2CBF6CE50067FD75 /* Assets.xcassets */; };
 		221321AE2CBF6CE50067FD75 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 221321AD2CBF6CE50067FD75 /* Base */; };
+		221DFF362CE9A60200EC9465 /* ForgotPasswordEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DFF352CE9A60200EC9465 /* ForgotPasswordEmailView.swift */; };
+		221DFF382CE9A61900EC9465 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DFF372CE9A61900EC9465 /* ForgotPasswordViewController.swift */; };
 		2230D69B2CD833A1003A4EF6 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2230D69A2CD833A1003A4EF6 /* NotificationNames.swift */; };
 		225887C72CE2A4280009E60C /* RegisterFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225887C62CE2A4280009E60C /* RegisterFirebaseManager.swift */; };
 		225887C92CE447B50009E60C /* ImageViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225887C82CE447B50009E60C /* ImageViewUtils.swift */; };
@@ -31,6 +33,9 @@
 		22AF331A2CCD69A800F024ED /* ProfileNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF33192CCD69A800F024ED /* ProfileNotificationViewController.swift */; };
 		22AF331C2CCD6A0300F024ED /* ProfileNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF331B2CCD6A0300F024ED /* ProfileNotificationView.swift */; };
 		22AF331E2CCD9A9000F024ED /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF331D2CCD9A9000F024ED /* HomePageView.swift */; };
+		22D123F12CEA93B500DA0291 /* ForgotPasswordNewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D123F02CEA93B500DA0291 /* ForgotPasswordNewPasswordView.swift */; };
+		22D123F32CEA93C800DA0291 /* ForgotPasswordNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D123F22CEA93C800DA0291 /* ForgotPasswordNewPasswordViewController.swift */; };
+		22D123F52CEA98C000DA0291 /* CommonFuncUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D123F42CEA98C000DA0291 /* CommonFuncUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +47,8 @@
 		221321AA2CBF6CE50067FD75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		221321AD2CBF6CE50067FD75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		221321AF2CBF6CE50067FD75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		221DFF352CE9A60200EC9465 /* ForgotPasswordEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordEmailView.swift; sourceTree = "<group>"; };
+		221DFF372CE9A61900EC9465 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		2230D69A2CD833A1003A4EF6 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		225887C62CE2A4280009E60C /* RegisterFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFirebaseManager.swift; sourceTree = "<group>"; };
 		225887C82CE447B50009E60C /* ImageViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewUtils.swift; sourceTree = "<group>"; };
@@ -57,6 +64,9 @@
 		22AF33192CCD69A800F024ED /* ProfileNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNotificationViewController.swift; sourceTree = "<group>"; };
 		22AF331B2CCD6A0300F024ED /* ProfileNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNotificationView.swift; sourceTree = "<group>"; };
 		22AF331D2CCD9A9000F024ED /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
+		22D123F02CEA93B500DA0291 /* ForgotPasswordNewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordNewPasswordView.swift; sourceTree = "<group>"; };
+		22D123F22CEA93C800DA0291 /* ForgotPasswordNewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordNewPasswordViewController.swift; sourceTree = "<group>"; };
+		22D123F42CEA98C000DA0291 /* CommonFuncUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFuncUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +114,29 @@
 				22AF33182CCD64CE00F024ED /* Home Page */,
 				2230D69A2CD833A1003A4EF6 /* NotificationNames.swift */,
 				225887C82CE447B50009E60C /* ImageViewUtils.swift */,
+				22D123F42CEA98C000DA0291 /* CommonFuncUtils.swift */,
 			);
 			path = WeCan_ProjectGroup31;
+			sourceTree = "<group>";
+		};
+		221DFF342CE9A3C300EC9465 /* SignIn Screen */ = {
+			isa = PBXGroup;
+			children = (
+				22AF33092CCC3CAF00F024ED /* SignInPageViewController.swift */,
+				22AF330B2CCC3CCB00F024ED /* SignInPageView.swift */,
+			);
+			path = "SignIn Screen";
+			sourceTree = "<group>";
+		};
+		221DFF392CE9A62C00EC9465 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				221DFF352CE9A60200EC9465 /* ForgotPasswordEmailView.swift */,
+				221DFF372CE9A61900EC9465 /* ForgotPasswordViewController.swift */,
+				22D123F02CEA93B500DA0291 /* ForgotPasswordNewPasswordView.swift */,
+				22D123F22CEA93C800DA0291 /* ForgotPasswordNewPasswordViewController.swift */,
+			);
+			path = ForgotPassword;
 			sourceTree = "<group>";
 		};
 		225887C52CE2A3F70009E60C /* Register Screen */ = {
@@ -123,8 +154,8 @@
 			children = (
 				221321A52CBF6CE50067FD75 /* LandingPageViewController.swift */,
 				22AF33042CCC155300F024ED /* LandingPageView.swift */,
-				22AF33092CCC3CAF00F024ED /* SignInPageViewController.swift */,
-				22AF330B2CCC3CCB00F024ED /* SignInPageView.swift */,
+				221DFF392CE9A62C00EC9465 /* ForgotPassword */,
+				221DFF342CE9A3C300EC9465 /* SignIn Screen */,
 				225887C52CE2A3F70009E60C /* Register Screen */,
 			);
 			path = "SignIn and Register";
@@ -232,19 +263,24 @@
 			files = (
 				221321A62CBF6CE50067FD75 /* LandingPageViewController.swift in Sources */,
 				225887C92CE447B50009E60C /* ImageViewUtils.swift in Sources */,
+				22D123F52CEA98C000DA0291 /* CommonFuncUtils.swift in Sources */,
 				22AF331A2CCD69A800F024ED /* ProfileNotificationViewController.swift in Sources */,
 				22AF33052CCC155300F024ED /* LandingPageView.swift in Sources */,
 				221321A22CBF6CE50067FD75 /* AppDelegate.swift in Sources */,
 				221321A42CBF6CE50067FD75 /* SceneDelegate.swift in Sources */,
 				22AF330A2CCC3CAF00F024ED /* SignInPageViewController.swift in Sources */,
+				221DFF382CE9A61900EC9465 /* ForgotPasswordViewController.swift in Sources */,
 				22AF33132CCC87A900F024ED /* RegisterPageViewController.swift in Sources */,
 				2230D69B2CD833A1003A4EF6 /* NotificationNames.swift in Sources */,
+				22D123F12CEA93B500DA0291 /* ForgotPasswordNewPasswordView.swift in Sources */,
 				22AF33152CCC87BE00F024ED /* RegisterPageView.swift in Sources */,
 				225887C72CE2A4280009E60C /* RegisterFirebaseManager.swift in Sources */,
 				22AF33172CCD647900F024ED /* HomePageViewController.swift in Sources */,
 				22AF331C2CCD6A0300F024ED /* ProfileNotificationView.swift in Sources */,
+				22D123F32CEA93C800DA0291 /* ForgotPasswordNewPasswordViewController.swift in Sources */,
 				22AF330E2CCC7CAF00F024ED /* ProgressSpinnerViewController.swift in Sources */,
 				22AF330C2CCC3CCB00F024ED /* SignInPageView.swift in Sources */,
+				221DFF362CE9A60200EC9465 /* ForgotPasswordEmailView.swift in Sources */,
 				22AF331E2CCD9A9000F024ED /* HomePageView.swift in Sources */,
 				22AF33112CCC7DB700F024ED /* ProgressSpinnerDelegate.swift in Sources */,
 			);

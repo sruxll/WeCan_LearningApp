@@ -8,6 +8,7 @@
 import UIKit
 import PhotosUI
 import FirebaseStorage
+import FirebaseFirestore
 
 class RegisterPageViewController: UIViewController {
 
@@ -16,6 +17,7 @@ class RegisterPageViewController: UIViewController {
     // store the picked image
     var pickedImage: UIImage?
     let storage = Storage.storage()
+    let database = Firestore.firestore()
     
     override func loadView() {
         view = registerPage

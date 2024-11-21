@@ -22,15 +22,9 @@ class ProfileNotificationViewController: UIViewController {
 //        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "profile_background")!)
 //        self.view.layer.contents = UIImage(named: "profile_background")!.cgImage
 
-        // Do any additional setup after loading the view.
         profileNotification.buttonLogout.addTarget(self, action: #selector(onLogoutButtonTapped), for: .touchUpInside)
     }
     
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        
-//        profileNotification.profileBackground.frame = self.view.bounds
-//    }
     @objc func onLogoutButtonTapped(){
         NotificationCenter.default.post(name: .userLogout, object: "")
     }
@@ -39,6 +33,8 @@ class ProfileNotificationViewController: UIViewController {
         profileNotification.labelUsername.text = currentUser?.displayName
         if let url = currentUser?.photoURL{
             profileNotification.profilePhoto.loadRemoteImage(from: url)
+        }else{
+            profileNotification.profilePhoto.setImage(UIImage(systemName: "person.fill"), for: .normal)
         }
     }
 

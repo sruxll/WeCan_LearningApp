@@ -30,10 +30,6 @@ class HomePageViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.fill"), style: .plain, target: self, action: #selector(onProfileBarButtonTapped))
         
-        //display profile
-        profileNotificationController.currentUser = currentUser
-        profileNotificationController.displayUserProfile()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(notificationUserLogout(notofication:)), name: .userLogout, object: nil)
         
     }
@@ -43,6 +39,9 @@ class HomePageViewController: UIViewController {
 //    }
     
     @objc func onProfileBarButtonTapped(){
+        //display profile
+        profileNotificationController.currentUser = currentUser
+        profileNotificationController.displayUserProfile()
         navigationController?.pushViewController(profileNotificationController, animated: true)
     }
     

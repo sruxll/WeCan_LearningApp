@@ -14,6 +14,7 @@ class LandingPageViewController: UIViewController {
     let signInPageController = SignInPageViewController()
     let registerPageController = RegisterPageViewController()
     let homePageController = HomePageViewController()
+    let forgotPasswordController = ForgotPasswordViewController()
     
     override func loadView() {
         view = landingPage
@@ -35,6 +36,11 @@ class LandingPageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(notificationUserJumpToSigUp(notification:)), name: .userJumpToSignUp, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(notificationUserJumpToSigIn(notification:)), name: .userJumpToSignIn, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(notificationUserForgotPassword(notification:)), name: .userForgotPassword, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(notificationUserJumpToSigIn(notification:)), name: .userPasswordReset, object: nil)
+        
     }
     
     @objc func onButtonSignInTapped(){
@@ -57,6 +63,10 @@ class LandingPageViewController: UIViewController {
     
     @objc func notificationUserJumpToSigIn(notification: Notification){
         navigationController?.pushViewController(signInPageController, animated: false)
+    }
+    
+    @objc func notificationUserForgotPassword(notification: Notification){
+        navigationController?.pushViewController(forgotPasswordController, animated: false)
     }
 }
 

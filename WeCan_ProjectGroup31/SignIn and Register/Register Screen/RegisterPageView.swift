@@ -88,6 +88,7 @@ class RegisterPageView: UIView {
     func setupTextFieldEmail() {
         textFieldEmail = UITextField()
         textFieldEmail.placeholder = "Email"
+        textFieldEmail.autocapitalizationType = .none
         textFieldEmail.borderStyle = .roundedRect
         textFieldEmail.keyboardType = UIKeyboardType.emailAddress
         textFieldEmail.translatesAutoresizingMaskIntoConstraints = false
@@ -106,6 +107,7 @@ class RegisterPageView: UIView {
     func setupTextFieldName() {
         textFieldName = UITextField()
         textFieldName.placeholder = "Username"
+        textFieldName.autocapitalizationType = .none
         textFieldName.borderStyle = .roundedRect
         textFieldName.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(textFieldName)

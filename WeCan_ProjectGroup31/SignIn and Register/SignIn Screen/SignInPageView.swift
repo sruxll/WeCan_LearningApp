@@ -83,7 +83,7 @@ class SignInPageView: UIView {
     func setupEmailTextField(){
         emailTextField = UITextField()
         emailTextField.placeholder = "Email"
-        emailTextField.text = "bob@email.com"
+        emailTextField.autocapitalizationType = .none
         emailTextField.borderStyle = .roundedRect
         emailTextField.keyboardType = .emailAddress
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +93,6 @@ class SignInPageView: UIView {
     func setupPasswordTextField(){
         passwordTextField = UITextField()
         passwordTextField.placeholder = "Password"
-        passwordTextField.text = "abc123"
         passwordTextField.borderStyle = .roundedRect
         passwordTextField.isSecureTextEntry = true
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -156,12 +155,10 @@ class SignInPageView: UIView {
             emailTextField.topAnchor.constraint(equalTo: profilePic.bottomAnchor, constant: 50),
             emailTextField.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 25),
             emailTextField.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -25),
-//            emailTextField.widthAnchor.constraint(equalToConstant: 40),
             
             passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 10),
             passwordTextField.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 25),
             passwordTextField.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -25),
-//            passwordTextField.widthAnchor.constraint(equalToConstant: 40),
             
             forgotPasswordButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 5),
             forgotPasswordButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -25),
@@ -175,7 +172,6 @@ class SignInPageView: UIView {
             registerButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -25),
             registerButton.widthAnchor.constraint(equalToConstant: 100),
             
-//            noAccountDesLabel.topAnchor.constraint(equalTo: registerButton.topAnchor),
             noAccountDesLabel.centerYAnchor.constraint(equalTo: registerButton.centerYAnchor),
             noAccountDesLabel.trailingAnchor.constraint(equalTo: registerButton.leadingAnchor, constant: -10),
             noAccountDesLabel.leadingAnchor.constraint(greaterThanOrEqualTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 25),

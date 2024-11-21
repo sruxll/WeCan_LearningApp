@@ -21,7 +21,7 @@ extension RegisterPageViewController{
                 let imageRepo = storageRef.child("imagesUserProfile")
                 let imageRef = imageRepo.child("\(NSUUID().uuidString).jpg")
                 
-                let uploadTask = imageRef.putData(jpegData, completion: {(metadata, error) in
+                imageRef.putData(jpegData, completion: {(metadata, error) in
                     if error == nil{
                         imageRef.downloadURL(completion: {(url, error) in
                             if error == nil{
@@ -43,7 +43,17 @@ extension RegisterPageViewController{
            let password = registerPage.textFieldPassword.text{
             Auth.auth().createUser(withEmail: email, password: password, completion: {(result, error) in
                 if error == nil{
+                    let newUserRef = self.database.collection("users").document(email)
+                    newUserRef.setData(["username": name, "email": email, "photoURL": photoURL?.absoluteString ?? ""], completion: { error in
+                        if error == nil {
+                            print("Document successfully added!")
+                        }else{
+                            self.showAlert("Error adding document!")
+                        }
+                    })
                     self.setNameAndPhotoOfTheUserInFirebaseAuth(name: name, email: email, photoURL: photoURL)
+                }else{
+                    self.showAlert("The email address is already in use by another account!")
                 }
             })
         }
@@ -59,16 +69,10 @@ extension RegisterPageViewController{
             }else{
                 self.hideActivityIndicator()
                 self.clearTextFields()
+                self.navigationController?.popViewController(animated: false)
                 NotificationCenter.default.post(name: .userSignUp, object: Auth.auth().currentUser)
-                //self.navigationController?.popViewController(animated: true)
             }
         })
-    }
-    
-    func showAlert(_ message: String){
-        let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
-        alert .addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(alert, animated: true)
     }
     
     func clearTextFields(){

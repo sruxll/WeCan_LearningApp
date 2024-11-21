@@ -24,6 +24,7 @@ class SignInPageViewController: UIViewController {
 
         signInPage.signInButton.addTarget(self, action: #selector(onSignInButtonTapped), for: .touchUpInside)
         signInPage.registerButton.addTarget(self, action: #selector(onRegisterButtonTapped), for: .touchUpInside)
+        signInPage.forgotPasswordButton.addTarget(self, action: #selector(onForgotPasswordButtonTapped), for: .touchUpInside)
     }
     
     @objc func onSignInButtonTapped(){
@@ -38,15 +39,11 @@ class SignInPageViewController: UIViewController {
         // display progress indicator
         showActivityIndicator()
         // authenticating the user
-        Auth.auth().signIn(withEmail: email, password: password, completion: {[self](result, error) in
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: {[self](result, error) in
             if error == nil{
                 // user authenticated
                 // hide the progress indicator
                 self.hideActivityIndicator()
-                // re-direct to the HOME page
-//                self.homePageController.modalPresentationStyle = .fullScreen
-//                present(self.homePageController, animated: true, completion: nil)
-//                navigationController?.popViewController(animated: true)
                 clearEmailPasswordField()
                 NotificationCenter.default.post(name: .userSignIn, object: result?.user)
             }else{
@@ -57,15 +54,8 @@ class SignInPageViewController: UIViewController {
         })
     }
     
-    func showWrongSignInAlert(_ message: String){
-        let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
-        alert .addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(alert, animated: true)
-    }
-    
     @objc func onRegisterButtonTapped(){
-//        registerPageController.modalPresentationStyle = .fullScreen
-//        present(registerPageController, animated: true, completion: nil) 
+        clearEmailPasswordField()
         navigationController?.popViewController(animated: false)
         NotificationCenter.default.post(name: .userJumpToSignUp, object: "")
     }
@@ -73,6 +63,18 @@ class SignInPageViewController: UIViewController {
     func clearEmailPasswordField(){
         signInPage.emailTextField.text = ""
         signInPage.passwordTextField.text = ""
+    }
+    
+    @objc func onForgotPasswordButtonTapped(){
+        clearEmailPasswordField()
+        navigationController?.popViewController(animated: false)
+        NotificationCenter.default.post(name: .userForgotPassword, object: "")
+    }
+    
+    func showWrongSignInAlert(_ message: String){
+        let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+        alert .addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true)
     }
 }
 

@@ -147,10 +147,6 @@ class ProfileNotificationView: UIView {
             labelUsername.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),
 
             profileBackground.topAnchor.constraint(equalTo: profilePhoto.bottomAnchor, constant: 20),
-//            profileBackground.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
-//            profileBackground.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-//            profileBackground.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-//            
             profileBackground.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),
             profileBackground.heightAnchor.constraint(equalToConstant: 100),
             profileBackground.widthAnchor.constraint(equalTo: contentWrapper.widthAnchor),
@@ -159,36 +155,30 @@ class ProfileNotificationView: UIView {
             
             profileImage.topAnchor.constraint(equalTo: profileBackground.bottomAnchor, constant: 50),
             profileImage.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 80),
-//            profileImage.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor),
             profileImage.heightAnchor.constraint(equalToConstant: 30),
             profileImage.widthAnchor.constraint(equalToConstant: 30),
             
             buttonProfile.topAnchor.constraint(equalTo: profileImage.topAnchor),
-//            buttonProfile.centerYAnchor.constraint(equalTo: contentWrapper.centerYAnchor),
             buttonProfile.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20),
             buttonProfile.heightAnchor.constraint(equalToConstant: 30),
             buttonProfile.widthAnchor.constraint(lessThanOrEqualTo: contentWrapper.widthAnchor),
             
             notificationImage.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 30),
             notificationImage.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 80),
-//            notificationImage.centerYAnchor.constraint(equalTo: contentWrapper.centerYAnchor),
             notificationImage.heightAnchor.constraint(equalToConstant: 30),
             notificationImage.widthAnchor.constraint(equalToConstant: 30),
             
             buttonNotification.topAnchor.constraint(equalTo: notificationImage.topAnchor),
-//            buttonNotification.centerYAnchor.constraint(equalTo: contentWrapper.centerYAnchor),
             buttonNotification.leadingAnchor.constraint(equalTo: notificationImage.trailingAnchor, constant: 20),
             buttonNotification.heightAnchor.constraint(equalToConstant: 30),
             buttonNotification.widthAnchor.constraint(lessThanOrEqualTo: contentWrapper.widthAnchor),
             
             logoutImage.topAnchor.constraint(equalTo: buttonNotification.bottomAnchor, constant: 160),
-//            logoutImage.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 80),
             logoutImage.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),
             logoutImage.heightAnchor.constraint(equalToConstant: 30),
             logoutImage.widthAnchor.constraint(equalToConstant: 30),
             
             buttonLogout.topAnchor.constraint(equalTo: logoutImage.topAnchor),
-//            buttonLogout.centerYAnchor.constraint(equalTo: contentWrapper.centerYAnchor),
             buttonLogout.leadingAnchor.constraint(equalTo: logoutImage.trailingAnchor, constant: 5),
             buttonLogout.heightAnchor.constraint(equalToConstant: 30),
             buttonLogout.widthAnchor.constraint(lessThanOrEqualTo: contentWrapper.widthAnchor),
