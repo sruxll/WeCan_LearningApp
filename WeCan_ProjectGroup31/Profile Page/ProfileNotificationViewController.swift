@@ -2,8 +2,6 @@
 //  ProfileNotificationViewController.swift
 //  WeCan_ProjectGroup31
 //
-//  Created by Lili XIANG on 10/26/24.
-//
 
 import UIKit
 import FirebaseAuth
@@ -19,8 +17,11 @@ class ProfileNotificationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "My Profile"
 //        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "profile_background")!)
 //        self.view.layer.contents = UIImage(named: "profile_background")!.cgImage
+        
+        setupEditButton()
 
         profileNotification.buttonLogout.addTarget(self, action: #selector(onLogoutButtonTapped), for: .touchUpInside)
     }
@@ -31,11 +32,23 @@ class ProfileNotificationViewController: UIViewController {
     
     func displayUserProfile(){
         profileNotification.labelUsername.text = currentUser?.displayName
+        profileNotification.labelEmail.text = currentUser?.email
         if let url = currentUser?.photoURL{
             profileNotification.profilePhoto.loadRemoteImage(from: url)
         }else{
             profileNotification.profilePhoto.setImage(UIImage(systemName: "person.fill"), for: .normal)
         }
+    }
+    
+    func setupEditButton() {
+        // Add a delete button to the navigation bar
+        let editButton = UIBarButtonItem(title: "Edit Profile", style: .plain, target: self, action: #selector(onDeleteTapped))
+        editButton.tintColor = .red // Set the color to red to indicate a destructive action
+        navigationItem.rightBarButtonItem = editButton
+    }
+    
+    @objc func onDeleteTapped() {
+        print("to Edit screen")
     }
 
 }

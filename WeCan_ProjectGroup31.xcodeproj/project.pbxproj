@@ -106,6 +106,7 @@
 				221321AF2CBF6CE50067FD75 /* Info.plist */,
 				F1C05B252CFD726D00FEEA72 /* GoogleService-Info.plist */,
 				22AF33062CCC158400F024ED /* SignIn and Register */,
+				F1C05B292CFD9DED00FEEA72 /* Profile Page */,
 				22AF330F2CCC7CB500F024ED /* Progress Indicator */,
 				22AF33182CCD64CE00F024ED /* Home Page */,
 				2230D69A2CD833A1003A4EF6 /* NotificationNames.swift */,
@@ -169,10 +170,17 @@
 			children = (
 				22AF33162CCD647900F024ED /* HomePageViewController.swift */,
 				22AF331D2CCD9A9000F024ED /* HomePageView.swift */,
+			);
+			path = "Home Page";
+			sourceTree = "<group>";
+		};
+		F1C05B292CFD9DED00FEEA72 /* Profile Page */ = {
+			isa = PBXGroup;
+			children = (
 				22AF33192CCD69A800F024ED /* ProfileNotificationViewController.swift */,
 				22AF331B2CCD6A0300F024ED /* ProfileNotificationView.swift */,
 			);
-			path = "Home Page";
+			path = "Profile Page";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

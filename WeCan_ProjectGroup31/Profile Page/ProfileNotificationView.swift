@@ -2,8 +2,6 @@
 //  ProfileNotificationView.swift
 //  WeCan_ProjectGroup31
 //
-//  Created by Lili XIANG on 10/26/24.
-//
 
 import UIKit
 
@@ -12,13 +10,17 @@ class ProfileNotificationView: UIView {
     var contentWrapper: UIScrollView!
     var profilePhoto: UIButton!
     var labelUsername: UILabel!
+    var labelEmail: UILabel!
     var profileBackground: UIImageView!
-    var buttonProfile: UIButton!
-    var profileImage: UIImageView!
+    var buttonCourses: UIButton!
+    var courseImage: UIImageView!
     var buttonNotification: UIButton!
     var notificationImage: UIImageView!
     var buttonLogout: UIButton!
     var logoutImage: UIImageView!
+    
+    var buttonFriends: UIButton!
+    var friendsImage: UIImageView!
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -27,13 +29,17 @@ class ProfileNotificationView: UIView {
         setupContentWrapper()
         setupProfilePhoto()
         setupLabelUsername()
+        setupLabelEmail()
         setupProfileBackground()
-        setupButtonProfile()
-        setupProfileImage()
+        setupButtonCourse()
+        setupCourseImage()
         setupButtonNotification()
         setupNotificationImage()
         setupButtonLogout()
         setupLogoutImage()
+        
+        setupButtonFriends()
+        setupFriendsImage()
         
         initConstraints()
     }
@@ -67,6 +73,15 @@ class ProfileNotificationView: UIView {
         contentWrapper.addSubview(labelUsername)
     }
     
+    func setupLabelEmail(){
+        labelEmail = UILabel()
+        labelEmail.text = ""
+        labelEmail.font = .systemFont(ofSize: 16)
+        labelEmail.textColor = .gray
+        labelEmail.translatesAutoresizingMaskIntoConstraints = false
+        contentWrapper.addSubview(labelEmail)
+    }
+    
     func setupProfileBackground(){
         profileBackground = UIImageView()
         profileBackground.image = UIImage(named: "profile_separator")
@@ -77,22 +92,23 @@ class ProfileNotificationView: UIView {
         contentWrapper.sendSubviewToBack(profileBackground)
     }
     
-    func setupButtonProfile(){
-        buttonProfile = UIButton(type: .system)
-        buttonProfile.setTitle("My Profile", for: .normal)
-        buttonProfile.tintColor = .black
-        buttonProfile.translatesAutoresizingMaskIntoConstraints = false
-        contentWrapper.addSubview(buttonProfile)
+    func setupButtonCourse(){
+        buttonCourses = UIButton(type: .system)
+        buttonCourses.setTitle("My Courses", for: .normal)
+        buttonCourses.tintColor = .black
+        buttonCourses.translatesAutoresizingMaskIntoConstraints = false
+        contentWrapper.addSubview(buttonCourses)
     }
     
-    func setupProfileImage(){
-        profileImage = UIImageView()
-        profileImage.image = UIImage(systemName: "person")?.withRenderingMode(.alwaysOriginal)
-        profileImage.contentMode = .scaleAspectFill
-        profileImage.clipsToBounds = true
-        profileImage.layer.masksToBounds = true
-        profileImage.translatesAutoresizingMaskIntoConstraints = false
-        contentWrapper.addSubview(profileImage)
+    func setupCourseImage(){
+        courseImage = UIImageView()
+        courseImage.image = UIImage(systemName: "books.vertical.circle")?.withRenderingMode(.alwaysOriginal)
+        courseImage.contentMode = .scaleAspectFill
+        courseImage.tintColor = .purple
+        courseImage.clipsToBounds = true
+        courseImage.layer.masksToBounds = true
+        courseImage.translatesAutoresizingMaskIntoConstraints = false
+        contentWrapper.addSubview(courseImage)
     }
     
     func setupButtonNotification(){
@@ -131,7 +147,26 @@ class ProfileNotificationView: UIView {
         contentWrapper.addSubview(logoutImage)
     }
     
-    func initConstraints(){
+    func setupButtonFriends(){
+        buttonFriends = UIButton(type: .system)
+        buttonFriends.setTitle("My Friends", for: .normal)
+        buttonFriends.tintColor = .black
+        buttonFriends.translatesAutoresizingMaskIntoConstraints = false
+        contentWrapper.addSubview(buttonFriends)
+    }
+    
+    func setupFriendsImage(){
+        friendsImage = UIImageView()
+        friendsImage.image = UIImage(systemName: "figure.2")?.withRenderingMode(.alwaysOriginal)
+        friendsImage.contentMode = .scaleAspectFill
+        friendsImage.tintColor = .orange
+        friendsImage.clipsToBounds = true
+        friendsImage.layer.masksToBounds = true
+        friendsImage.translatesAutoresizingMaskIntoConstraints = false
+        contentWrapper.addSubview(friendsImage)
+    }
+    
+    func initConstraints() {
         NSLayoutConstraint.activate([
             contentWrapper.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             contentWrapper.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
@@ -142,7 +177,7 @@ class ProfileNotificationView: UIView {
             profilePhoto.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),
             profilePhoto.widthAnchor.constraint(equalToConstant: 220),
             profilePhoto.heightAnchor.constraint(equalToConstant: 220),
-     
+
             labelUsername.topAnchor.constraint(equalTo: profilePhoto.bottomAnchor, constant: 18),
             labelUsername.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),
 
@@ -150,42 +185,58 @@ class ProfileNotificationView: UIView {
             profileBackground.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),
             profileBackground.heightAnchor.constraint(equalToConstant: 100),
             profileBackground.widthAnchor.constraint(equalTo: contentWrapper.widthAnchor),
-            
 
+            labelEmail.topAnchor.constraint(equalTo: labelUsername.bottomAnchor, constant: 8),
+            labelEmail.centerXAnchor.constraint(equalTo: labelUsername.centerXAnchor),
+            labelEmail.leadingAnchor.constraint(greaterThanOrEqualTo: profileBackground.leadingAnchor, constant: 16),
+            labelEmail.trailingAnchor.constraint(lessThanOrEqualTo: profileBackground.trailingAnchor, constant: -16),
+            labelEmail.bottomAnchor.constraint(lessThanOrEqualTo: profileBackground.bottomAnchor, constant: -8),
+
+            courseImage.topAnchor.constraint(equalTo: profileBackground.bottomAnchor, constant: 50),
+            courseImage.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 80),
+            courseImage.heightAnchor.constraint(equalToConstant: 30),
+            courseImage.widthAnchor.constraint(equalToConstant: 30),
             
-            profileImage.topAnchor.constraint(equalTo: profileBackground.bottomAnchor, constant: 50),
-            profileImage.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 80),
-            profileImage.heightAnchor.constraint(equalToConstant: 30),
-            profileImage.widthAnchor.constraint(equalToConstant: 30),
-            
-            buttonProfile.topAnchor.constraint(equalTo: profileImage.topAnchor),
-            buttonProfile.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20),
-            buttonProfile.heightAnchor.constraint(equalToConstant: 30),
-            buttonProfile.widthAnchor.constraint(lessThanOrEqualTo: contentWrapper.widthAnchor),
-            
-            notificationImage.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 30),
+            buttonCourses.topAnchor.constraint(equalTo: courseImage.topAnchor),
+            buttonCourses.leadingAnchor.constraint(equalTo: courseImage.trailingAnchor, constant: 20),
+            buttonCourses.heightAnchor.constraint(equalToConstant: 30),
+            buttonCourses.widthAnchor.constraint(lessThanOrEqualTo: contentWrapper.widthAnchor),
+
+            friendsImage.topAnchor.constraint(equalTo: courseImage.bottomAnchor, constant: 30),
+            friendsImage.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 80),
+            friendsImage.heightAnchor.constraint(equalToConstant: 30),
+            friendsImage.widthAnchor.constraint(equalToConstant: 30),
+
+            buttonFriends.topAnchor.constraint(equalTo: friendsImage.topAnchor),
+            buttonFriends.leadingAnchor.constraint(equalTo: friendsImage.trailingAnchor, constant: 20),
+            buttonFriends.heightAnchor.constraint(equalToConstant: 30),
+            buttonFriends.widthAnchor.constraint(lessThanOrEqualTo: contentWrapper.widthAnchor),
+
+            notificationImage.topAnchor.constraint(equalTo: friendsImage.bottomAnchor, constant: 30),
             notificationImage.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 80),
             notificationImage.heightAnchor.constraint(equalToConstant: 30),
             notificationImage.widthAnchor.constraint(equalToConstant: 30),
-            
+
             buttonNotification.topAnchor.constraint(equalTo: notificationImage.topAnchor),
             buttonNotification.leadingAnchor.constraint(equalTo: notificationImage.trailingAnchor, constant: 20),
             buttonNotification.heightAnchor.constraint(equalToConstant: 30),
             buttonNotification.widthAnchor.constraint(lessThanOrEqualTo: contentWrapper.widthAnchor),
-            
-            logoutImage.topAnchor.constraint(equalTo: buttonNotification.bottomAnchor, constant: 160),
+
+            logoutImage.topAnchor.constraint(equalTo: buttonNotification.bottomAnchor, constant: 100),
             logoutImage.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),
             logoutImage.heightAnchor.constraint(equalToConstant: 30),
             logoutImage.widthAnchor.constraint(equalToConstant: 30),
-            
+
             buttonLogout.topAnchor.constraint(equalTo: logoutImage.topAnchor),
             buttonLogout.leadingAnchor.constraint(equalTo: logoutImage.trailingAnchor, constant: 5),
             buttonLogout.heightAnchor.constraint(equalToConstant: 30),
             buttonLogout.widthAnchor.constraint(lessThanOrEqualTo: contentWrapper.widthAnchor),
-            
+
             buttonLogout.bottomAnchor.constraint(equalTo: contentWrapper.bottomAnchor)
         ])
     }
+
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
