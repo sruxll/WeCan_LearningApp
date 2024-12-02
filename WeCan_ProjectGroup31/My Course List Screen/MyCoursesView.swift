@@ -3,7 +3,7 @@
 //  CS5520 Final Project - WeCan
 //
 //  Group 31
-//  Created by AdelaFeng
+//  Created by Jiehua Feng
 //
 
 import UIKit
