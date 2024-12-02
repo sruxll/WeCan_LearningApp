@@ -18,7 +18,6 @@
 		2230D69B2CD833A1003A4EF6 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2230D69A2CD833A1003A4EF6 /* NotificationNames.swift */; };
 		225887C72CE2A4280009E60C /* RegisterFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225887C62CE2A4280009E60C /* RegisterFirebaseManager.swift */; };
 		225887C92CE447B50009E60C /* ImageViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225887C82CE447B50009E60C /* ImageViewUtils.swift */; };
-		22AF32FC2CCC112C00F024ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22AF32FB2CCC112C00F024ED /* GoogleService-Info.plist */; };
 		22AF32FF2CCC121600F024ED /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 22AF32FE2CCC121600F024ED /* FirebaseAuth */; };
 		22AF33012CCC121600F024ED /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 22AF33002CCC121600F024ED /* FirebaseFirestore */; };
 		22AF33032CCC121600F024ED /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 22AF33022CCC121600F024ED /* FirebaseStorage */; };
@@ -33,9 +32,8 @@
 		22AF331A2CCD69A800F024ED /* ProfileNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF33192CCD69A800F024ED /* ProfileNotificationViewController.swift */; };
 		22AF331C2CCD6A0300F024ED /* ProfileNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF331B2CCD6A0300F024ED /* ProfileNotificationView.swift */; };
 		22AF331E2CCD9A9000F024ED /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF331D2CCD9A9000F024ED /* HomePageView.swift */; };
-		22D123F12CEA93B500DA0291 /* ForgotPasswordNewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D123F02CEA93B500DA0291 /* ForgotPasswordNewPasswordView.swift */; };
-		22D123F32CEA93C800DA0291 /* ForgotPasswordNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D123F22CEA93C800DA0291 /* ForgotPasswordNewPasswordViewController.swift */; };
 		22D123F52CEA98C000DA0291 /* CommonFuncUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D123F42CEA98C000DA0291 /* CommonFuncUtils.swift */; };
+		F1C05B262CFD726D00FEEA72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1C05B252CFD726D00FEEA72 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +50,6 @@
 		2230D69A2CD833A1003A4EF6 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		225887C62CE2A4280009E60C /* RegisterFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFirebaseManager.swift; sourceTree = "<group>"; };
 		225887C82CE447B50009E60C /* ImageViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewUtils.swift; sourceTree = "<group>"; };
-		22AF32FB2CCC112C00F024ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22AF33042CCC155300F024ED /* LandingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageView.swift; sourceTree = "<group>"; };
 		22AF33092CCC3CAF00F024ED /* SignInPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPageViewController.swift; sourceTree = "<group>"; };
 		22AF330B2CCC3CCB00F024ED /* SignInPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPageView.swift; sourceTree = "<group>"; };
@@ -64,9 +61,8 @@
 		22AF33192CCD69A800F024ED /* ProfileNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNotificationViewController.swift; sourceTree = "<group>"; };
 		22AF331B2CCD6A0300F024ED /* ProfileNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNotificationView.swift; sourceTree = "<group>"; };
 		22AF331D2CCD9A9000F024ED /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
-		22D123F02CEA93B500DA0291 /* ForgotPasswordNewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordNewPasswordView.swift; sourceTree = "<group>"; };
-		22D123F22CEA93C800DA0291 /* ForgotPasswordNewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordNewPasswordViewController.swift; sourceTree = "<group>"; };
 		22D123F42CEA98C000DA0291 /* CommonFuncUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFuncUtils.swift; sourceTree = "<group>"; };
+		F1C05B252CFD726D00FEEA72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +104,7 @@
 				221321AA2CBF6CE50067FD75 /* Assets.xcassets */,
 				221321AC2CBF6CE50067FD75 /* LaunchScreen.storyboard */,
 				221321AF2CBF6CE50067FD75 /* Info.plist */,
-				22AF32FB2CCC112C00F024ED /* GoogleService-Info.plist */,
+				F1C05B252CFD726D00FEEA72 /* GoogleService-Info.plist */,
 				22AF33062CCC158400F024ED /* SignIn and Register */,
 				22AF330F2CCC7CB500F024ED /* Progress Indicator */,
 				22AF33182CCD64CE00F024ED /* Home Page */,
@@ -133,8 +129,6 @@
 			children = (
 				221DFF352CE9A60200EC9465 /* ForgotPasswordEmailView.swift */,
 				221DFF372CE9A61900EC9465 /* ForgotPasswordViewController.swift */,
-				22D123F02CEA93B500DA0291 /* ForgotPasswordNewPasswordView.swift */,
-				22D123F22CEA93C800DA0291 /* ForgotPasswordNewPasswordViewController.swift */,
 			);
 			path = ForgotPassword;
 			sourceTree = "<group>";
@@ -248,7 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				221321AB2CBF6CE50067FD75 /* Assets.xcassets in Resources */,
-				22AF32FC2CCC112C00F024ED /* GoogleService-Info.plist in Resources */,
+				F1C05B262CFD726D00FEEA72 /* GoogleService-Info.plist in Resources */,
 				221321AE2CBF6CE50067FD75 /* Base in Resources */,
 				221321A92CBF6CE50067FD75 /* Base in Resources */,
 			);
@@ -272,12 +266,10 @@
 				221DFF382CE9A61900EC9465 /* ForgotPasswordViewController.swift in Sources */,
 				22AF33132CCC87A900F024ED /* RegisterPageViewController.swift in Sources */,
 				2230D69B2CD833A1003A4EF6 /* NotificationNames.swift in Sources */,
-				22D123F12CEA93B500DA0291 /* ForgotPasswordNewPasswordView.swift in Sources */,
 				22AF33152CCC87BE00F024ED /* RegisterPageView.swift in Sources */,
 				225887C72CE2A4280009E60C /* RegisterFirebaseManager.swift in Sources */,
 				22AF33172CCD647900F024ED /* HomePageViewController.swift in Sources */,
 				22AF331C2CCD6A0300F024ED /* ProfileNotificationView.swift in Sources */,
-				22D123F32CEA93C800DA0291 /* ForgotPasswordNewPasswordViewController.swift in Sources */,
 				22AF330E2CCC7CAF00F024ED /* ProgressSpinnerViewController.swift in Sources */,
 				22AF330C2CCC3CCB00F024ED /* SignInPageView.swift in Sources */,
 				221DFF362CE9A60200EC9465 /* ForgotPasswordEmailView.swift in Sources */,
@@ -447,7 +439,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "space.neu.WeCan-ProjectGroup31";
+				PRODUCT_BUNDLE_IDENTIFIER = "space.neu.WeCan-ProjectGroup31.v2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -475,7 +467,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "space.neu.WeCan-ProjectGroup31";
+				PRODUCT_BUNDLE_IDENTIFIER = "space.neu.WeCan-ProjectGroup31.v2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
