@@ -36,6 +36,10 @@
 		F1C05B262CFD726D00FEEA72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1C05B252CFD726D00FEEA72 /* GoogleService-Info.plist */; };
 		F1C05B2B2CFDB48900FEEA72 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B2A2CFDB48900FEEA72 /* EditProfileViewController.swift */; };
 		F1C05B2D2CFDB4B800FEEA72 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B2C2CFDB4B800FEEA72 /* EditProfileView.swift */; };
+		F1C05B302CFE54CC00FEEA72 /* PublicProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B2F2CFE54CC00FEEA72 /* PublicProfileViewController.swift */; };
+		F1C05B322CFE593300FEEA72 /* ActiveUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B312CFE593300FEEA72 /* ActiveUsersViewController.swift */; };
+		F1C05B372CFE688300FEEA72 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B362CFE688300FEEA72 /* FriendsViewController.swift */; };
+		F1C05B3D2CFE697200FEEA72 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B3C2CFE697200FEEA72 /* ChatViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +71,10 @@
 		F1C05B252CFD726D00FEEA72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1C05B2A2CFDB48900FEEA72 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		F1C05B2C2CFDB4B800FEEA72 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		F1C05B2F2CFE54CC00FEEA72 /* PublicProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicProfileViewController.swift; sourceTree = "<group>"; };
+		F1C05B312CFE593300FEEA72 /* ActiveUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveUsersViewController.swift; sourceTree = "<group>"; };
+		F1C05B362CFE688300FEEA72 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FriendsViewController.swift; path = "WeCan_ProjectGroup31/Friends Page/FriendsViewController.swift"; sourceTree = SOURCE_ROOT; };
+		F1C05B3C2CFE697200FEEA72 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = "WeCan_ProjectGroup31/Friends Page/ChatViewController.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +119,7 @@
 				F1C05B252CFD726D00FEEA72 /* GoogleService-Info.plist */,
 				22AF33062CCC158400F024ED /* SignIn and Register */,
 				F1C05B2E2CFDB4BE00FEEA72 /* Edit Profile */,
+				F1C05B332CFE593E00FEEA72 /* Friends Page */,
 				F1C05B292CFD9DED00FEEA72 /* Profile Page */,
 				22AF330F2CCC7CB500F024ED /* Progress Indicator */,
 				22AF33182CCD64CE00F024ED /* Home Page */,
@@ -184,6 +193,7 @@
 			children = (
 				22AF33192CCD69A800F024ED /* ProfileNotificationViewController.swift */,
 				22AF331B2CCD6A0300F024ED /* ProfileNotificationView.swift */,
+				F1C05B3A2CFE68D500FEEA72 /* Public Page */,
 			);
 			path = "Profile Page";
 			sourceTree = "<group>";
@@ -195,6 +205,32 @@
 				F1C05B2C2CFDB4B800FEEA72 /* EditProfileView.swift */,
 			);
 			path = "Edit Profile";
+			sourceTree = "<group>";
+		};
+		F1C05B332CFE593E00FEEA72 /* Friends Page */ = {
+			isa = PBXGroup;
+			children = (
+				F1C05B312CFE593300FEEA72 /* ActiveUsersViewController.swift */,
+				F1C05B362CFE688300FEEA72 /* FriendsViewController.swift */,
+				F1C05B3B2CFE68E200FEEA72 /* Chat Page */,
+			);
+			path = "Friends Page";
+			sourceTree = "<group>";
+		};
+		F1C05B3A2CFE68D500FEEA72 /* Public Page */ = {
+			isa = PBXGroup;
+			children = (
+				F1C05B2F2CFE54CC00FEEA72 /* PublicProfileViewController.swift */,
+			);
+			path = "Public Page";
+			sourceTree = "<group>";
+		};
+		F1C05B3B2CFE68E200FEEA72 /* Chat Page */ = {
+			isa = PBXGroup;
+			children = (
+				F1C05B3C2CFE697200FEEA72 /* ChatViewController.swift */,
+			);
+			path = "Chat Page";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,17 +324,21 @@
 				221DFF382CE9A61900EC9465 /* ForgotPasswordViewController.swift in Sources */,
 				22AF33132CCC87A900F024ED /* RegisterPageViewController.swift in Sources */,
 				2230D69B2CD833A1003A4EF6 /* NotificationNames.swift in Sources */,
+				F1C05B372CFE688300FEEA72 /* FriendsViewController.swift in Sources */,
 				22AF33152CCC87BE00F024ED /* RegisterPageView.swift in Sources */,
 				225887C72CE2A4280009E60C /* RegisterFirebaseManager.swift in Sources */,
 				22AF33172CCD647900F024ED /* HomePageViewController.swift in Sources */,
 				F1C05B2D2CFDB4B800FEEA72 /* EditProfileView.swift in Sources */,
+				F1C05B302CFE54CC00FEEA72 /* PublicProfileViewController.swift in Sources */,
 				22AF331C2CCD6A0300F024ED /* ProfileNotificationView.swift in Sources */,
 				22AF330E2CCC7CAF00F024ED /* ProgressSpinnerViewController.swift in Sources */,
 				22AF330C2CCC3CCB00F024ED /* SignInPageView.swift in Sources */,
 				221DFF362CE9A60200EC9465 /* ForgotPasswordEmailView.swift in Sources */,
 				22AF331E2CCD9A9000F024ED /* HomePageView.swift in Sources */,
+				F1C05B3D2CFE697200FEEA72 /* ChatViewController.swift in Sources */,
 				22AF33112CCC7DB700F024ED /* ProgressSpinnerDelegate.swift in Sources */,
 				F1C05B2B2CFDB48900FEEA72 /* EditProfileViewController.swift in Sources */,
+				F1C05B322CFE593300FEEA72 /* ActiveUsersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

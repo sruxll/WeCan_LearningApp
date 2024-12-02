@@ -24,7 +24,17 @@ class ProfileNotificationViewController: UIViewController {
         setupEditButton()
 
         profileNotification.buttonLogout.addTarget(self, action: #selector(onLogoutButtonTapped), for: .touchUpInside)
+        
+        profileNotification.buttonCourses.addTarget(self, action: #selector(onMyCoursesTapped), for: .touchUpInside)
+        
+        profileNotification.buttonFriends.addTarget(self, action: #selector(onMyFriendsTapped), for: .touchUpInside)
     }
+    
+    @objc func onMyCoursesTapped() {
+            // Navigate to ActiveUsersViewController
+            let activeUsersVC = ActiveUsersViewController()
+            navigationController?.pushViewController(activeUsersVC, animated: true)
+        }
     
     @objc func onLogoutButtonTapped(){
         NotificationCenter.default.post(name: .userLogout, object: "")
@@ -61,6 +71,12 @@ class ProfileNotificationViewController: UIViewController {
 
         // Push to the Edit Profile screen
         navigationController?.pushViewController(editProfileVC, animated: true)
+    }
+    
+    @objc func onMyFriendsTapped() {
+        print("to Friends screen")
+        let friendsVC = FriendsViewController()
+        navigationController?.pushViewController(friendsVC, animated: true)
     }
 
 }
