@@ -36,6 +36,28 @@
 		22D123F12CEA93B500DA0291 /* ForgotPasswordNewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D123F02CEA93B500DA0291 /* ForgotPasswordNewPasswordView.swift */; };
 		22D123F32CEA93C800DA0291 /* ForgotPasswordNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D123F22CEA93C800DA0291 /* ForgotPasswordNewPasswordViewController.swift */; };
 		22D123F52CEA98C000DA0291 /* CommonFuncUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D123F42CEA98C000DA0291 /* CommonFuncUtils.swift */; };
+		90B50D662CFDBCC90064F355 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D652CFDBCC90064F355 /* User.swift */; };
+		90B50D682CFDBCE50064F355 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D672CFDBCE50064F355 /* Chat.swift */; };
+		90B50D6A2CFDBCFF0064F355 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D692CFDBCFF0064F355 /* Message.swift */; };
+		90B50D6C2CFDBD320064F355 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D6B2CFDBD320064F355 /* Course.swift */; };
+		90B50D6E2CFDBD440064F355 /* CourseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D6D2CFDBD440064F355 /* CourseProgress.swift */; };
+		90B50D712CFDBD830064F355 /* AllCoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D702CFDBD830064F355 /* AllCoursesView.swift */; };
+		90B50D732CFDBDA10064F355 /* AllCoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D722CFDBDA10064F355 /* AllCoursesViewController.swift */; };
+		90B50D762CFDBDC60064F355 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D752CFDBDC60064F355 /* CourseTableViewCell.swift */; };
+		90B50D792CFDBE010064F355 /* AddCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D782CFDBE010064F355 /* AddCourseView.swift */; };
+		90B50D7B2CFDBE1A0064F355 /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D7A2CFDBE1A0064F355 /* AddCourseViewController.swift */; };
+		90B50D7E2CFDBE5C0064F355 /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D7D2CFDBE5C0064F355 /* CourseDetailViewController.swift */; };
+		90B50D802CFDBE910064F355 /* SectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D7F2CFDBE910064F355 /* SectionTableViewCell.swift */; };
+		90B50D822CFDBEAA0064F355 /* CourseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D812CFDBEAA0064F355 /* CourseDetailView.swift */; };
+		90B50D852CFDBEFF0064F355 /* MyCoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D842CFDBEFF0064F355 /* MyCoursesView.swift */; };
+		90B50D892CFDBF5F0064F355 /* MyCourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D882CFDBF5F0064F355 /* MyCourseTableViewCell.swift */; };
+		90B50D8B2CFDBF7C0064F355 /* MyCoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D8A2CFDBF7C0064F355 /* MyCoursesViewController.swift */; };
+		90B50D8F2CFDBFBF0064F355 /* CourseUserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D8E2CFDBFBF0064F355 /* CourseUserListViewController.swift */; };
+		90B50D912CFDBFDC0064F355 /* CourseUserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D902CFDBFDC0064F355 /* CourseUserListTableViewCell.swift */; };
+		90B50D932CFDBFF10064F355 /* CourseUserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D922CFDBFF10064F355 /* CourseUserListView.swift */; };
+		90B50D952CFDC00A0064F355 /* FriendsProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D942CFDC00A0064F355 /* FriendsProgressView.swift */; };
+		90B50D972CFDC02D0064F355 /* FriendsProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D962CFDC02D0064F355 /* FriendsProgressTableViewCell.swift */; };
+		90B50D992CFDC04A0064F355 /* FriendsProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50D982CFDC04A0064F355 /* FriendsProgressViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +89,28 @@
 		22D123F02CEA93B500DA0291 /* ForgotPasswordNewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordNewPasswordView.swift; sourceTree = "<group>"; };
 		22D123F22CEA93C800DA0291 /* ForgotPasswordNewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordNewPasswordViewController.swift; sourceTree = "<group>"; };
 		22D123F42CEA98C000DA0291 /* CommonFuncUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFuncUtils.swift; sourceTree = "<group>"; };
+		90B50D652CFDBCC90064F355 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		90B50D672CFDBCE50064F355 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		90B50D692CFDBCFF0064F355 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		90B50D6B2CFDBD320064F355 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		90B50D6D2CFDBD440064F355 /* CourseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgress.swift; sourceTree = "<group>"; };
+		90B50D702CFDBD830064F355 /* AllCoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCoursesView.swift; sourceTree = "<group>"; };
+		90B50D722CFDBDA10064F355 /* AllCoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCoursesViewController.swift; sourceTree = "<group>"; };
+		90B50D752CFDBDC60064F355 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
+		90B50D782CFDBE010064F355 /* AddCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseView.swift; sourceTree = "<group>"; };
+		90B50D7A2CFDBE1A0064F355 /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
+		90B50D7D2CFDBE5C0064F355 /* CourseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailViewController.swift; sourceTree = "<group>"; };
+		90B50D7F2CFDBE910064F355 /* SectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableViewCell.swift; sourceTree = "<group>"; };
+		90B50D812CFDBEAA0064F355 /* CourseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailView.swift; sourceTree = "<group>"; };
+		90B50D842CFDBEFF0064F355 /* MyCoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoursesView.swift; sourceTree = "<group>"; };
+		90B50D882CFDBF5F0064F355 /* MyCourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCourseTableViewCell.swift; sourceTree = "<group>"; };
+		90B50D8A2CFDBF7C0064F355 /* MyCoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoursesViewController.swift; sourceTree = "<group>"; };
+		90B50D8E2CFDBFBF0064F355 /* CourseUserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseUserListViewController.swift; sourceTree = "<group>"; };
+		90B50D902CFDBFDC0064F355 /* CourseUserListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseUserListTableViewCell.swift; sourceTree = "<group>"; };
+		90B50D922CFDBFF10064F355 /* CourseUserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseUserListView.swift; sourceTree = "<group>"; };
+		90B50D942CFDC00A0064F355 /* FriendsProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsProgressView.swift; sourceTree = "<group>"; };
+		90B50D962CFDC02D0064F355 /* FriendsProgressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsProgressTableViewCell.swift; sourceTree = "<group>"; };
+		90B50D982CFDC04A0064F355 /* FriendsProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsProgressViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +146,13 @@
 		221321A02CBF6CE50067FD75 /* WeCan_ProjectGroup31 */ = {
 			isa = PBXGroup;
 			children = (
+				90B50D642CFDBC960064F355 /* Data Model */,
+				90B50D6F2CFDBD690064F355 /* All Courses Screen */,
+				90B50D772CFDBDE60064F355 /* Add Course Screen */,
+				90B50D7C2CFDBE430064F355 /* Course Detail Screen */,
+				90B50D832CFDBEEC0064F355 /* My Course List Screen */,
+				90B50D8C2CFDBF940064F355 /* Course User List Screen */,
+				90B50D8D2CFDBFA10064F355 /* Friends Progress Screen */,
 				221321A12CBF6CE50067FD75 /* AppDelegate.swift */,
 				221321A32CBF6CE50067FD75 /* SceneDelegate.swift */,
 				221321A72CBF6CE50067FD75 /* Main.storyboard */,
@@ -179,6 +230,77 @@
 				22AF331B2CCD6A0300F024ED /* ProfileNotificationView.swift */,
 			);
 			path = "Home Page";
+			sourceTree = "<group>";
+		};
+		90B50D642CFDBC960064F355 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				90B50D652CFDBCC90064F355 /* User.swift */,
+				90B50D672CFDBCE50064F355 /* Chat.swift */,
+				90B50D692CFDBCFF0064F355 /* Message.swift */,
+				90B50D6B2CFDBD320064F355 /* Course.swift */,
+				90B50D6D2CFDBD440064F355 /* CourseProgress.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		90B50D6F2CFDBD690064F355 /* All Courses Screen */ = {
+			isa = PBXGroup;
+			children = (
+				90B50D702CFDBD830064F355 /* AllCoursesView.swift */,
+				90B50D722CFDBDA10064F355 /* AllCoursesViewController.swift */,
+				90B50D752CFDBDC60064F355 /* CourseTableViewCell.swift */,
+			);
+			path = "All Courses Screen";
+			sourceTree = "<group>";
+		};
+		90B50D772CFDBDE60064F355 /* Add Course Screen */ = {
+			isa = PBXGroup;
+			children = (
+				90B50D782CFDBE010064F355 /* AddCourseView.swift */,
+				90B50D7A2CFDBE1A0064F355 /* AddCourseViewController.swift */,
+			);
+			path = "Add Course Screen";
+			sourceTree = "<group>";
+		};
+		90B50D7C2CFDBE430064F355 /* Course Detail Screen */ = {
+			isa = PBXGroup;
+			children = (
+				90B50D7D2CFDBE5C0064F355 /* CourseDetailViewController.swift */,
+				90B50D7F2CFDBE910064F355 /* SectionTableViewCell.swift */,
+				90B50D812CFDBEAA0064F355 /* CourseDetailView.swift */,
+			);
+			path = "Course Detail Screen";
+			sourceTree = "<group>";
+		};
+		90B50D832CFDBEEC0064F355 /* My Course List Screen */ = {
+			isa = PBXGroup;
+			children = (
+				90B50D842CFDBEFF0064F355 /* MyCoursesView.swift */,
+				90B50D882CFDBF5F0064F355 /* MyCourseTableViewCell.swift */,
+				90B50D8A2CFDBF7C0064F355 /* MyCoursesViewController.swift */,
+			);
+			path = "My Course List Screen";
+			sourceTree = "<group>";
+		};
+		90B50D8C2CFDBF940064F355 /* Course User List Screen */ = {
+			isa = PBXGroup;
+			children = (
+				90B50D8E2CFDBFBF0064F355 /* CourseUserListViewController.swift */,
+				90B50D902CFDBFDC0064F355 /* CourseUserListTableViewCell.swift */,
+				90B50D922CFDBFF10064F355 /* CourseUserListView.swift */,
+			);
+			path = "Course User List Screen";
+			sourceTree = "<group>";
+		};
+		90B50D8D2CFDBFA10064F355 /* Friends Progress Screen */ = {
+			isa = PBXGroup;
+			children = (
+				90B50D942CFDC00A0064F355 /* FriendsProgressView.swift */,
+				90B50D962CFDC02D0064F355 /* FriendsProgressTableViewCell.swift */,
+				90B50D982CFDC04A0064F355 /* FriendsProgressViewController.swift */,
+			);
+			path = "Friends Progress Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,28 +383,50 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90B50D6C2CFDBD320064F355 /* Course.swift in Sources */,
 				221321A62CBF6CE50067FD75 /* LandingPageViewController.swift in Sources */,
 				225887C92CE447B50009E60C /* ImageViewUtils.swift in Sources */,
+				90B50D792CFDBE010064F355 /* AddCourseView.swift in Sources */,
 				22D123F52CEA98C000DA0291 /* CommonFuncUtils.swift in Sources */,
+				90B50D992CFDC04A0064F355 /* FriendsProgressViewController.swift in Sources */,
 				22AF331A2CCD69A800F024ED /* ProfileNotificationViewController.swift in Sources */,
 				22AF33052CCC155300F024ED /* LandingPageView.swift in Sources */,
+				90B50D7E2CFDBE5C0064F355 /* CourseDetailViewController.swift in Sources */,
 				221321A22CBF6CE50067FD75 /* AppDelegate.swift in Sources */,
 				221321A42CBF6CE50067FD75 /* SceneDelegate.swift in Sources */,
+				90B50D6A2CFDBCFF0064F355 /* Message.swift in Sources */,
 				22AF330A2CCC3CAF00F024ED /* SignInPageViewController.swift in Sources */,
+				90B50D8F2CFDBFBF0064F355 /* CourseUserListViewController.swift in Sources */,
+				90B50D972CFDC02D0064F355 /* FriendsProgressTableViewCell.swift in Sources */,
 				221DFF382CE9A61900EC9465 /* ForgotPasswordViewController.swift in Sources */,
 				22AF33132CCC87A900F024ED /* RegisterPageViewController.swift in Sources */,
+				90B50D932CFDBFF10064F355 /* CourseUserListView.swift in Sources */,
 				2230D69B2CD833A1003A4EF6 /* NotificationNames.swift in Sources */,
 				22D123F12CEA93B500DA0291 /* ForgotPasswordNewPasswordView.swift in Sources */,
+				90B50D912CFDBFDC0064F355 /* CourseUserListTableViewCell.swift in Sources */,
+				90B50D762CFDBDC60064F355 /* CourseTableViewCell.swift in Sources */,
 				22AF33152CCC87BE00F024ED /* RegisterPageView.swift in Sources */,
+				90B50D7B2CFDBE1A0064F355 /* AddCourseViewController.swift in Sources */,
+				90B50D682CFDBCE50064F355 /* Chat.swift in Sources */,
 				225887C72CE2A4280009E60C /* RegisterFirebaseManager.swift in Sources */,
+				90B50D892CFDBF5F0064F355 /* MyCourseTableViewCell.swift in Sources */,
+				90B50D6E2CFDBD440064F355 /* CourseProgress.swift in Sources */,
 				22AF33172CCD647900F024ED /* HomePageViewController.swift in Sources */,
+				90B50D732CFDBDA10064F355 /* AllCoursesViewController.swift in Sources */,
 				22AF331C2CCD6A0300F024ED /* ProfileNotificationView.swift in Sources */,
+				90B50D822CFDBEAA0064F355 /* CourseDetailView.swift in Sources */,
 				22D123F32CEA93C800DA0291 /* ForgotPasswordNewPasswordViewController.swift in Sources */,
 				22AF330E2CCC7CAF00F024ED /* ProgressSpinnerViewController.swift in Sources */,
+				90B50D802CFDBE910064F355 /* SectionTableViewCell.swift in Sources */,
 				22AF330C2CCC3CCB00F024ED /* SignInPageView.swift in Sources */,
 				221DFF362CE9A60200EC9465 /* ForgotPasswordEmailView.swift in Sources */,
+				90B50D852CFDBEFF0064F355 /* MyCoursesView.swift in Sources */,
 				22AF331E2CCD9A9000F024ED /* HomePageView.swift in Sources */,
 				22AF33112CCC7DB700F024ED /* ProgressSpinnerDelegate.swift in Sources */,
+				90B50D8B2CFDBF7C0064F355 /* MyCoursesViewController.swift in Sources */,
+				90B50D952CFDC00A0064F355 /* FriendsProgressView.swift in Sources */,
+				90B50D662CFDBCC90064F355 /* User.swift in Sources */,
+				90B50D712CFDBD830064F355 /* AllCoursesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
