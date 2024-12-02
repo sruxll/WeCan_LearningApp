@@ -42,13 +42,25 @@ class ProfileNotificationViewController: UIViewController {
     
     func setupEditButton() {
         // Add a delete button to the navigation bar
-        let editButton = UIBarButtonItem(title: "Edit Profile", style: .plain, target: self, action: #selector(onDeleteTapped))
+        let editButton = UIBarButtonItem(title: "Edit Profile", style: .plain, target: self, action: #selector(onEditTapped))
         editButton.tintColor = .red // Set the color to red to indicate a destructive action
         navigationItem.rightBarButtonItem = editButton
     }
     
-    @objc func onDeleteTapped() {
+    @objc func onEditTapped() {
         print("to Edit screen")
+        // Create an instance of EditProfileViewController
+        let editProfileVC = EditProfileViewController()
+        editProfileVC.currentUser = currentUser
+
+        // Closure to handle profile update
+        editProfileVC.onProfileUpdated = { [weak self] updatedUser in
+           self?.currentUser = updatedUser
+           self?.displayUserProfile() // Update UI with the new data
+        }
+
+        // Push to the Edit Profile screen
+        navigationController?.pushViewController(editProfileVC, animated: true)
     }
 
 }

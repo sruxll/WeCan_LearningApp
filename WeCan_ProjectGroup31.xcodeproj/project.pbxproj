@@ -34,6 +34,8 @@
 		22AF331E2CCD9A9000F024ED /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AF331D2CCD9A9000F024ED /* HomePageView.swift */; };
 		22D123F52CEA98C000DA0291 /* CommonFuncUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D123F42CEA98C000DA0291 /* CommonFuncUtils.swift */; };
 		F1C05B262CFD726D00FEEA72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1C05B252CFD726D00FEEA72 /* GoogleService-Info.plist */; };
+		F1C05B2B2CFDB48900FEEA72 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B2A2CFDB48900FEEA72 /* EditProfileViewController.swift */; };
+		F1C05B2D2CFDB4B800FEEA72 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B2C2CFDB4B800FEEA72 /* EditProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +65,8 @@
 		22AF331D2CCD9A9000F024ED /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		22D123F42CEA98C000DA0291 /* CommonFuncUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFuncUtils.swift; sourceTree = "<group>"; };
 		F1C05B252CFD726D00FEEA72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F1C05B2A2CFDB48900FEEA72 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		F1C05B2C2CFDB4B800FEEA72 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 				221321AF2CBF6CE50067FD75 /* Info.plist */,
 				F1C05B252CFD726D00FEEA72 /* GoogleService-Info.plist */,
 				22AF33062CCC158400F024ED /* SignIn and Register */,
+				F1C05B2E2CFDB4BE00FEEA72 /* Edit Profile */,
 				F1C05B292CFD9DED00FEEA72 /* Profile Page */,
 				22AF330F2CCC7CB500F024ED /* Progress Indicator */,
 				22AF33182CCD64CE00F024ED /* Home Page */,
@@ -181,6 +186,15 @@
 				22AF331B2CCD6A0300F024ED /* ProfileNotificationView.swift */,
 			);
 			path = "Profile Page";
+			sourceTree = "<group>";
+		};
+		F1C05B2E2CFDB4BE00FEEA72 /* Edit Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F1C05B2A2CFDB48900FEEA72 /* EditProfileViewController.swift */,
+				F1C05B2C2CFDB4B800FEEA72 /* EditProfileView.swift */,
+			);
+			path = "Edit Profile";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,12 +291,14 @@
 				22AF33152CCC87BE00F024ED /* RegisterPageView.swift in Sources */,
 				225887C72CE2A4280009E60C /* RegisterFirebaseManager.swift in Sources */,
 				22AF33172CCD647900F024ED /* HomePageViewController.swift in Sources */,
+				F1C05B2D2CFDB4B800FEEA72 /* EditProfileView.swift in Sources */,
 				22AF331C2CCD6A0300F024ED /* ProfileNotificationView.swift in Sources */,
 				22AF330E2CCC7CAF00F024ED /* ProgressSpinnerViewController.swift in Sources */,
 				22AF330C2CCC3CCB00F024ED /* SignInPageView.swift in Sources */,
 				221DFF362CE9A60200EC9465 /* ForgotPasswordEmailView.swift in Sources */,
 				22AF331E2CCD9A9000F024ED /* HomePageView.swift in Sources */,
 				22AF33112CCC7DB700F024ED /* ProgressSpinnerDelegate.swift in Sources */,
+				F1C05B2B2CFDB48900FEEA72 /* EditProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
