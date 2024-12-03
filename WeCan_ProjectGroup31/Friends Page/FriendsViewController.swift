@@ -172,13 +172,23 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        // Determine if the cell is for followers or following
         let selectedFriendData = tableView == followersTableView ? followers[indexPath.row] : following[indexPath.row]
         
-        // Navigate to chat screen
+        // Extract the email for the selected friend
+        guard let email = selectedFriendData["email"] as? String else {
+            print("Error: Email not found for selected friend")
+            return
+        }
+        
+        // Navigate to the ChatViewController
         let chatVC = ChatViewController()
-        chatVC.friendData = selectedFriendData
+        chatVC.currentUser = Auth.auth().currentUser // Pass current user
+        chatVC.chatPartnerEmail = email // Pass the selected friend's email
         navigationController?.pushViewController(chatVC, animated: true)
     }
+
 }
 
 // MARK: - FriendCell
