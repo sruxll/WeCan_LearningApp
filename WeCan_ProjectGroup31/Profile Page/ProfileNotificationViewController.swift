@@ -32,8 +32,8 @@ class ProfileNotificationViewController: UIViewController {
     
     @objc func onMyCoursesTapped() {
             // Navigate to ActiveUsersViewController
-            let activeUsersVC = ActiveUsersViewController()
-            navigationController?.pushViewController(activeUsersVC, animated: true)
+            let myCourseVC = MyCoursesViewController()
+            navigationController?.pushViewController(myCourseVC, animated: true)
         }
     
     @objc func onLogoutButtonTapped(){
