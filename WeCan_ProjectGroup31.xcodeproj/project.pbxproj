@@ -56,6 +56,7 @@
 		F14594892CFE800E003F0AF5 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14594882CFE800E003F0AF5 /* ChatView.swift */; };
 		F145948B2CFE803C003F0AF5 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145948A2CFE803C003F0AF5 /* ChatTableViewCell.swift */; };
 		F145948D2CFE8085003F0AF5 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145948C2CFE8085003F0AF5 /* ChatMessage.swift */; };
+		F145948F2D0153B9003F0AF5 /* PublicCoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145948E2D0153B9003F0AF5 /* PublicCoursesViewController.swift */; };
 		F1C05B262CFD726D00FEEA72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1C05B252CFD726D00FEEA72 /* GoogleService-Info.plist */; };
 		F1C05B2B2CFDB48900FEEA72 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B2A2CFDB48900FEEA72 /* EditProfileViewController.swift */; };
 		F1C05B2D2CFDB4B800FEEA72 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B2C2CFDB4B800FEEA72 /* EditProfileView.swift */; };
@@ -113,6 +114,7 @@
 		F14594882CFE800E003F0AF5 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		F145948A2CFE803C003F0AF5 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		F145948C2CFE8085003F0AF5 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatMessage.swift; path = "Friends Page/Chat Page/ChatMessage.swift"; sourceTree = "<group>"; };
+		F145948E2D0153B9003F0AF5 /* PublicCoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicCoursesViewController.swift; sourceTree = "<group>"; };
 		F1C05B252CFD726D00FEEA72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1C05B2A2CFDB48900FEEA72 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		F1C05B2C2CFDB4B800FEEA72 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				90B50DB42CFE9BE30064F355 /* MyCoursesViewController.swift */,
 				90B50DB62CFE9C050064F355 /* MyCourseTableViewCell.swift */,
 				90B50DB82CFE9C1C0064F355 /* MyCoursesView.swift */,
+				F145948E2D0153B9003F0AF5 /* PublicCoursesViewController.swift */,
 			);
 			path = "My Course List Screen";
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				F1C05B302CFE54CC00FEEA72 /* PublicProfileViewController.swift in Sources */,
 				22AF331C2CCD6A0300F024ED /* ProfileNotificationView.swift in Sources */,
 				90B50D9E2CFE99E00064F355 /* CourseProgress.swift in Sources */,
+				F145948F2D0153B9003F0AF5 /* PublicCoursesViewController.swift in Sources */,
 				90B50DC02CFE9CA30064F355 /* CourseDetailViewController.swift in Sources */,
 				90B50DB92CFE9C1C0064F355 /* MyCoursesView.swift in Sources */,
 				22AF330E2CCC7CAF00F024ED /* ProgressSpinnerViewController.swift in Sources */,

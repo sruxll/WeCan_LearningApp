@@ -41,7 +41,7 @@ class FriendsProgressViewController: UIViewController {
         // Add home button to navigation bar
         setupNavigationBar()
         
-        fetchFriendsData() // Fetch current user's friends
+        fetchFriendsData(for: course.id) // Fetch data
     }
     
     private func setupNavigationBar() {
@@ -55,79 +55,89 @@ class FriendsProgressViewController: UIViewController {
     }
 
     @objc private func onTapHomeButton() {
-        // Navigate to ProfileNotificationViewController
+        // Navigate to HomePageViewController
         let homePageVC = HomePageViewController()
         navigationController?.pushViewController(homePageVC, animated: true)
     }
-    
-    private func fetchFriendsData() {
-            guard let currentUserEmail = currentUser?.email else {
-                print("Error: Current user email is nil")
+
+    private func fetchFriendsData(for courseId: String) {
+        guard let currentUserEmail = currentUser?.email else {
+            print("Error: Current user email is nil")
+            return
+        }
+
+        // Fetch followers
+        database.collection("users").document(currentUserEmail).collection("followers").getDocuments { [weak self] (snapshot, error) in
+            guard let self = self else { return }
+            if let error = error {
+                print("Error fetching followers: \(error.localizedDescription)")
                 return
             }
 
-            // Fetch followers
-            database.collection("users").document(currentUserEmail).collection("followers").getDocuments { [weak self] (snapshot, error) in
-                guard let self = self else { return }
+            let followerEmails = snapshot?.documents.map { $0.documentID } ?? []
+
+            // Fetch following
+            self.database.collection("users").document(currentUserEmail).collection("following").getDocuments { (snapshot, error) in
                 if let error = error {
-                    print("Error fetching followers: \(error.localizedDescription)")
+                    print("Error fetching following: \(error.localizedDescription)")
                     return
                 }
 
-                let followerEmails = snapshot?.documents.map { $0.documentID } ?? []
+                let followingEmails = snapshot?.documents.map { $0.documentID } ?? []
+                let potentialFriendEmails = Set(followerEmails).union(followingEmails)
 
-                // Fetch following
-                self.database.collection("users").document(currentUserEmail).collection("following").getDocuments { (snapshot, error) in
-                    if let error = error {
-                        print("Error fetching following: \(error.localizedDescription)")
-                        return
-                    }
-
-                    let followingEmails = snapshot?.documents.map { $0.documentID } ?? []
-                    let friendEmails = Set(followerEmails).union(followingEmails)
-                    self.fetchFriendsProgress(for: Array(friendEmails))
-                }
+                // Filter friends taking the same course
+                self.filterFriendsTakingCourse(potentialFriendEmails: Array(potentialFriendEmails), courseId: courseId)
             }
         }
+    }
 
-    private func fetchFriendsProgress(for friendEmails: [String]) {
-        var friends: [User] = []
+    private func filterFriendsTakingCourse(potentialFriendEmails: [String], courseId: String) {
         let group = DispatchGroup()
+        var filteredFriends = [String]()
 
-        for email in friendEmails {
+        for email in potentialFriendEmails {
             group.enter()
-            database.collection("users").document(email).getDocument { [weak self] (snapshot, error) in
-                if let error = error {
-                    print("Error fetching user document: \(error)")
-                } else if let data = snapshot?.data(), let user = User(documentData: data) {
-                    friends.append(user)
+            database.collection("users").document(email).getDocument { document, error in
+                if let document = document, let data = document.data(),
+                   let subscribedCourses = data["subscribedCourses"] as? [String],
+                   subscribedCourses.contains(courseId) {
+                    filteredFriends.append(email)
                 }
                 group.leave()
             }
         }
 
         group.notify(queue: .main) {
-            self.loadProgress(for: friends)
+            self.fetchFriendsProgress(for: filteredFriends)
         }
     }
-
-    private func loadProgress(for friends: [User]) {
+    private func fetchFriendsProgress(for friendEmails: [String]) {
         let group = DispatchGroup()
         var loadedProgress: [(user: User, progress: [Int: Bool])] = []
 
-        for friend in friends {
+        for email in friendEmails {
             group.enter()
-            let progressRef = database.collection("userProgress").document("\(friend.email)_\(course.id)")
-            progressRef.getDocument { document, error in
-                if let document = document, let progressData = document.data(),
-                   let completedSections = progressData["completedSections"] as? [Int] {
-                    var progress = [Int: Bool]()
-                    completedSections.forEach { progress[$0] = true }
-                    loadedProgress.append((user: friend, progress: progress))
-                } else {
-                    loadedProgress.append((user: friend, progress: [:])) // No progress
+            database.collection("users").document(email).getDocument { [weak self] document, error in
+                guard let self = self else { return group.leave() } // Safeguard
+                guard let document = document, let userData = document.data(),
+                      let user = User(documentData: userData) else {
+                    print("Error: Could not load user data for \(email)")
+                    return group.leave()
                 }
-                group.leave()
+
+                let progressRef = self.database.collection("userProgress").document("\(email)_\(self.course.id)")
+                progressRef.getDocument { document, error in
+                    defer { group.leave() }
+                    if let document = document, let progressData = document.data(),
+                       let completedSections = progressData["completedSections"] as? [Int] {
+                        var progress = [Int: Bool]()
+                        completedSections.forEach { progress[$0] = true }
+                        loadedProgress.append((user: user, progress: progress))
+                    } else {
+                        loadedProgress.append((user: user, progress: [:]))
+                    }
+                }
             }
         }
 
@@ -136,6 +146,9 @@ class FriendsProgressViewController: UIViewController {
             self.friendsProgressView.tableView.reloadData()
         }
     }
+
+
+
 }
 
 // MARK: - Table View Delegate and Data Source
@@ -153,17 +166,6 @@ extension FriendsProgressViewController: UITableViewDelegate, UITableViewDataSou
         cell.configure(with: friendProgress.user, progress: friendProgress.progress, course: course)
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            tableView.deselectRow(at: indexPath, animated: true)
-            let selectedFriend = friendsProgress[indexPath.row].user
-            
-            // Navigate to the public profile page
-            let publicProfileVC = PublicProfileViewController()
-            publicProfileVC.publicUserName = selectedFriend.name
-            publicProfileVC.publicUserImageURL = selectedFriend.photoURL.flatMap { URL(string: $0) }
-            publicProfileVC.publicUserId = selectedFriend.email
-            navigationController?.pushViewController(publicProfileVC, animated: true)
-    }
 }
+
 

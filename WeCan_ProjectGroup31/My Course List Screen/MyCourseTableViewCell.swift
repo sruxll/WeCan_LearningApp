@@ -103,5 +103,10 @@ class MyCourseTableViewCell: UITableViewCell {
             progressBar.addArrangedSubview(segment)
         }
     }
+    
+    // Method to toggle visibility of the progress bar
+    func setProgressBarVisibility(isHidden: Bool) {
+        progressBar.isHidden = isHidden
+    }
 }
 

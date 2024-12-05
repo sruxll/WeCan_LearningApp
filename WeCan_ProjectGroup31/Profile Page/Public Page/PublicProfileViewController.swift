@@ -61,12 +61,19 @@ class PublicProfileViewController: UIViewController {
         profileNotificationView.buttonCourses.addTarget(self, action: #selector(onMyCoursesTapped), for: .touchUpInside)
     }
 
-    
     @objc func onMyCoursesTapped() {
-            // Navigate to ActiveUsersViewController
-            let myCourseVC = MyCoursesViewController()
-            navigationController?.pushViewController(myCourseVC, animated: true)
+        if publicUserId == currentUser?.email {
+            // Navigate to MyCoursesViewController
+            let myCoursesVC = MyCoursesViewController()
+            navigationController?.pushViewController(myCoursesVC, animated: true)
+        } else {
+            // Navigate to PublicCoursesViewController
+            let publicCoursesVC = PublicCoursesViewController()
+            publicCoursesVC.publicUserId = publicUserId
+            publicCoursesVC.publicUserName = publicUserName
+            navigationController?.pushViewController(publicCoursesVC, animated: true)
         }
+    }
     
     func setupUIForPublicProfile() {
         // Hide unnecessary items
