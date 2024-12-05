@@ -54,7 +54,19 @@ class PublicProfileViewController: UIViewController {
         setupUIForPublicProfile()
         setupFollowButton()
         checkFollowStatus() // Check if already following
+        setupMyCoursesButton()
     }
+    
+    func setupMyCoursesButton() {
+        profileNotificationView.buttonCourses.addTarget(self, action: #selector(onMyCoursesTapped), for: .touchUpInside)
+    }
+
+    
+    @objc func onMyCoursesTapped() {
+            // Navigate to ActiveUsersViewController
+            let myCourseVC = MyCoursesViewController()
+            navigationController?.pushViewController(myCourseVC, animated: true)
+        }
     
     func setupUIForPublicProfile() {
         // Hide unnecessary items

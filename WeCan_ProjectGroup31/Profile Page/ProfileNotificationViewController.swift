@@ -28,6 +28,7 @@ class ProfileNotificationViewController: UIViewController {
         profileNotification.buttonCourses.addTarget(self, action: #selector(onMyCoursesTapped), for: .touchUpInside)
         
         profileNotification.buttonFriends.addTarget(self, action: #selector(onMyFriendsTapped), for: .touchUpInside)
+        
     }
     
     @objc func onMyCoursesTapped() {

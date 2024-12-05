@@ -60,7 +60,6 @@
 		F1C05B2B2CFDB48900FEEA72 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B2A2CFDB48900FEEA72 /* EditProfileViewController.swift */; };
 		F1C05B2D2CFDB4B800FEEA72 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B2C2CFDB4B800FEEA72 /* EditProfileView.swift */; };
 		F1C05B302CFE54CC00FEEA72 /* PublicProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B2F2CFE54CC00FEEA72 /* PublicProfileViewController.swift */; };
-		F1C05B322CFE593300FEEA72 /* ActiveUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B312CFE593300FEEA72 /* ActiveUsersViewController.swift */; };
 		F1C05B372CFE688300FEEA72 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B362CFE688300FEEA72 /* FriendsViewController.swift */; };
 		F1C05B3D2CFE697200FEEA72 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C05B3C2CFE697200FEEA72 /* ChatViewController.swift */; };
 /* End PBXBuildFile section */
@@ -118,7 +117,6 @@
 		F1C05B2A2CFDB48900FEEA72 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		F1C05B2C2CFDB4B800FEEA72 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		F1C05B2F2CFE54CC00FEEA72 /* PublicProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicProfileViewController.swift; sourceTree = "<group>"; };
-		F1C05B312CFE593300FEEA72 /* ActiveUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveUsersViewController.swift; sourceTree = "<group>"; };
 		F1C05B362CFE688300FEEA72 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FriendsViewController.swift; path = "WeCan_ProjectGroup31/Friends Page/FriendsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F1C05B3C2CFE697200FEEA72 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = "WeCan_ProjectGroup31/Friends Page/ChatViewController.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -325,7 +323,6 @@
 		F1C05B332CFE593E00FEEA72 /* Friends Page */ = {
 			isa = PBXGroup;
 			children = (
-				F1C05B312CFE593300FEEA72 /* ActiveUsersViewController.swift */,
 				F1C05B362CFE688300FEEA72 /* FriendsViewController.swift */,
 				F1C05B3B2CFE68E200FEEA72 /* Chat Page */,
 			);
@@ -478,7 +475,6 @@
 				90B50DB72CFE9C050064F355 /* MyCourseTableViewCell.swift in Sources */,
 				F145948B2CFE803C003F0AF5 /* ChatTableViewCell.swift in Sources */,
 				F1C05B2B2CFDB48900FEEA72 /* EditProfileViewController.swift in Sources */,
-				F1C05B322CFE593300FEEA72 /* ActiveUsersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

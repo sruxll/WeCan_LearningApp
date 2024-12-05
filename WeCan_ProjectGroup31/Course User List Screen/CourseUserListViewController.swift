@@ -122,4 +122,30 @@ extension CourseUserListViewController: UITableViewDelegate, UITableViewDataSour
         cell.configure(with: user)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let selectedUser = subscribedUsers[indexPath.row]
+        
+        // Navigate to the public profile page
+        let publicProfileVC = PublicProfileViewController()
+        publicProfileVC.publicUserName = selectedUser.name
+        publicProfileVC.publicUserImageURL = selectedUser.photoURL.flatMap { URL(string: $0) }
+        publicProfileVC.publicUserId = selectedUser.email
+        navigationController?.pushViewController(publicProfileVC, animated: true)
+    }
+
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//            tableView.deselectRow(at: indexPath, animated: true)
+//            let selectedUser = subscribedUsers[indexPath.row]
+//            
+//            // Navigate to the public profile page
+//            let publicProfileVC = PublicProfileViewController()
+//        publicProfileVC.publicUserName = selectedUser.name
+//            if let photoURLString = selectedUserData["photoURL"] as? String {
+//                publicProfileVC.publicUserImageURL = URL(string: photoURLString)
+//            }
+//            publicProfileVC.publicUserId = selectedUserData["email"] as? String // use email as publicUserId
+//            navigationController?.pushViewController(publicProfileVC, animated: true)
+//        }
 }

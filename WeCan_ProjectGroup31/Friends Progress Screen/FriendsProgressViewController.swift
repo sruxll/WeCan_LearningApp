@@ -7,12 +7,14 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
 
 class FriendsProgressViewController: UIViewController {
     private let friendsProgressView = FriendsProgressView()
     private let course: Course
     private var friendsProgress: [(user: User, progress: [Int: Bool])] = [] // Friends and their progress
     private let database = Firestore.firestore()
+    private let currentUser = Auth.auth().currentUser
 
     init(course: Course) {
         self.course = course
@@ -39,7 +41,7 @@ class FriendsProgressViewController: UIViewController {
         // Add home button to navigation bar
         setupNavigationBar()
         
-        fetchFriendsProgress() // Fetch data
+        fetchFriendsData() // Fetch current user's friends
     }
     
     private func setupNavigationBar() {
@@ -57,28 +59,56 @@ class FriendsProgressViewController: UIViewController {
         let homePageVC = HomePageViewController()
         navigationController?.pushViewController(homePageVC, animated: true)
     }
+    
+    private func fetchFriendsData() {
+            guard let currentUserEmail = currentUser?.email else {
+                print("Error: Current user email is nil")
+                return
+            }
 
-    private func fetchFriendsProgress() {
-        // Fetch only users who have subscribed to this course
-        database.collection("users")
-            .whereField("subscribedCourses", arrayContains: course.id)
-            .getDocuments { [weak self] snapshot, error in
+            // Fetch followers
+            database.collection("users").document(currentUserEmail).collection("followers").getDocuments { [weak self] (snapshot, error) in
+                guard let self = self else { return }
                 if let error = error {
-                    print("Error fetching users: \(error)")
+                    print("Error fetching followers: \(error.localizedDescription)")
                     return
                 }
 
-                guard let documents = snapshot?.documents else { return }
+                let followerEmails = snapshot?.documents.map { $0.documentID } ?? []
 
-                var friends: [User] = []
-                for document in documents {
-                    if let user = User(documentData: document.data()) {
-                        friends.append(user)
+                // Fetch following
+                self.database.collection("users").document(currentUserEmail).collection("following").getDocuments { (snapshot, error) in
+                    if let error = error {
+                        print("Error fetching following: \(error.localizedDescription)")
+                        return
                     }
-                }
 
-                self?.loadProgress(for: friends)
+                    let followingEmails = snapshot?.documents.map { $0.documentID } ?? []
+                    let friendEmails = Set(followerEmails).union(followingEmails)
+                    self.fetchFriendsProgress(for: Array(friendEmails))
+                }
             }
+        }
+
+    private func fetchFriendsProgress(for friendEmails: [String]) {
+        var friends: [User] = []
+        let group = DispatchGroup()
+
+        for email in friendEmails {
+            group.enter()
+            database.collection("users").document(email).getDocument { [weak self] (snapshot, error) in
+                if let error = error {
+                    print("Error fetching user document: \(error)")
+                } else if let data = snapshot?.data(), let user = User(documentData: data) {
+                    friends.append(user)
+                }
+                group.leave()
+            }
+        }
+
+        group.notify(queue: .main) {
+            self.loadProgress(for: friends)
+        }
     }
 
     private func loadProgress(for friends: [User]) {
@@ -122,6 +152,18 @@ extension FriendsProgressViewController: UITableViewDelegate, UITableViewDataSou
         let friendProgress = friendsProgress[indexPath.row]
         cell.configure(with: friendProgress.user, progress: friendProgress.progress, course: course)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            tableView.deselectRow(at: indexPath, animated: true)
+            let selectedFriend = friendsProgress[indexPath.row].user
+            
+            // Navigate to the public profile page
+            let publicProfileVC = PublicProfileViewController()
+            publicProfileVC.publicUserName = selectedFriend.name
+            publicProfileVC.publicUserImageURL = selectedFriend.photoURL.flatMap { URL(string: $0) }
+            publicProfileVC.publicUserId = selectedFriend.email
+            navigationController?.pushViewController(publicProfileVC, animated: true)
     }
 }
 
