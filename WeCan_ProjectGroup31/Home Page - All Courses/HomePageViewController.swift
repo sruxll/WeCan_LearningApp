@@ -20,6 +20,7 @@ class HomePageViewController: UIViewController {
     
     let profileNotificationController = ProfileNotificationViewController()
     var landingPageController: LandingPageViewController?
+    let notificationsController = NotificationsViewController()
     
     override func loadView() {
         view = homePage
@@ -35,6 +36,8 @@ class HomePageViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.fill"), style: .plain, target: self, action: #selector(onProfileBarButtonTapped))
         
         NotificationCenter.default.addObserver(self, selector: #selector(notificationUserLogout(notofication:)), name: .userLogout, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(notificationJumpToNotification(notification:)), name: .userJumpToNotification, object: nil)
         
         // Set up the table view
         homePage.tableView.delegate = self
@@ -72,6 +75,11 @@ class HomePageViewController: UIViewController {
     
     @objc func notificationUserLogout(notofication: Notification){
         navigationController?.setViewControllers([self.landingPageController!], animated: true)
+    }
+    
+    @objc func notificationJumpToNotification(notification: Notification) {
+        notificationsController.currentUser = currentUser
+        navigationController?.pushViewController(notificationsController, animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {

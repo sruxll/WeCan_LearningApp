@@ -183,6 +183,23 @@ class CourseDetailViewController: UIViewController {
             self?.configureButtons()
             self?.courseDetailView.tableView.reloadData()
         }
+        
+        do {
+            // generate notification after that
+            let notifRef = Firestore.firestore().collection("users").document(userEmail).collection("notifications")
+            let newNotif = Notif(messageFrom: "System", message: "The new course: \(course.name) is successfully added!", requiresResponse: false, isNotificationRead: false, isDeleted: false)
+            try notifRef.addDocument(from: newNotif){ error in
+                if let error = error {
+                    print("Error adding a notification: \(error.localizedDescription)")
+                    self.showAlert("Error adding a notification!")
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+        } catch {
+            print("Error adding a notification!")
+            self.showAlert("Error adding a notification!")
+        }
     }
 
     @objc private func viewFriendsProgressTapped() {

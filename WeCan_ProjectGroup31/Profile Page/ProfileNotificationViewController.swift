@@ -18,8 +18,6 @@ class ProfileNotificationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "My Profile"
-//        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "profile_background")!)
-//        self.view.layer.contents = UIImage(named: "profile_background")!.cgImage
         
         setupEditButton()
 
@@ -28,6 +26,8 @@ class ProfileNotificationViewController: UIViewController {
         profileNotification.buttonCourses.addTarget(self, action: #selector(onMyCoursesTapped), for: .touchUpInside)
         
         profileNotification.buttonFriends.addTarget(self, action: #selector(onMyFriendsTapped), for: .touchUpInside)
+        
+        profileNotification.buttonNotification.addTarget(self, action: #selector(onButtonNotificationTapped), for: .touchUpInside)
         
     }
     
@@ -78,6 +78,11 @@ class ProfileNotificationViewController: UIViewController {
         print("to Friends screen")
         let friendsVC = FriendsViewController()
         navigationController?.pushViewController(friendsVC, animated: true)
+    }
+    
+    @objc func onButtonNotificationTapped() {
+        navigationController?.popViewController(animated: false)
+        NotificationCenter.default.post(name: .userJumpToNotification, object: "")
     }
 
 }

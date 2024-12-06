@@ -16,6 +16,18 @@
 		221DFF362CE9A60200EC9465 /* ForgotPasswordEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DFF352CE9A60200EC9465 /* ForgotPasswordEmailView.swift */; };
 		221DFF382CE9A61900EC9465 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DFF372CE9A61900EC9465 /* ForgotPasswordViewController.swift */; };
 		2230D69B2CD833A1003A4EF6 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2230D69A2CD833A1003A4EF6 /* NotificationNames.swift */; };
+		223870742D02C21A00403682 /* NewNotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223870642D02C21A00403682 /* NewNotificationsView.swift */; };
+		223870752D02C21A00403682 /* NewNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223870652D02C21A00403682 /* NewNotificationsViewController.swift */; };
+		223870762D02C21A00403682 /* NotificationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223870672D02C21A00403682 /* NotificationDetailsView.swift */; };
+		223870772D02C21A00403682 /* NotificationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223870682D02C21A00403682 /* NotificationDetailsViewController.swift */; };
+		223870782D02C21A00403682 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238706A2D02C21A00403682 /* SearchView.swift */; };
+		223870792D02C21A00403682 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238706B2D02C21A00403682 /* SearchViewController.swift */; };
+		2238707A2D02C21A00403682 /* TrashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238706D2D02C21A00403682 /* TrashView.swift */; };
+		2238707B2D02C21A00403682 /* TrashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238706E2D02C21A00403682 /* TrashViewController.swift */; };
+		2238707C2D02C21A00403682 /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223870702D02C21A00403682 /* NotificationsTableViewCell.swift */; };
+		2238707D2D02C21A00403682 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223870712D02C21A00403682 /* NotificationsView.swift */; };
+		2238707E2D02C21A00403682 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223870722D02C21A00403682 /* NotificationsViewController.swift */; };
+		223870802D02C83400403682 /* Notif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238707F2D02C83400403682 /* Notif.swift */; };
 		225887C72CE2A4280009E60C /* RegisterFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225887C62CE2A4280009E60C /* RegisterFirebaseManager.swift */; };
 		225887C92CE447B50009E60C /* ImageViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225887C82CE447B50009E60C /* ImageViewUtils.swift */; };
 		22AF32FF2CCC121600F024ED /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 22AF32FE2CCC121600F024ED /* FirebaseAuth */; };
@@ -77,6 +89,18 @@
 		221DFF352CE9A60200EC9465 /* ForgotPasswordEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordEmailView.swift; sourceTree = "<group>"; };
 		221DFF372CE9A61900EC9465 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		2230D69A2CD833A1003A4EF6 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
+		223870642D02C21A00403682 /* NewNotificationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewNotificationsView.swift; sourceTree = "<group>"; };
+		223870652D02C21A00403682 /* NewNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewNotificationsViewController.swift; sourceTree = "<group>"; };
+		223870672D02C21A00403682 /* NotificationDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsView.swift; sourceTree = "<group>"; };
+		223870682D02C21A00403682 /* NotificationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsViewController.swift; sourceTree = "<group>"; };
+		2238706A2D02C21A00403682 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		2238706B2D02C21A00403682 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		2238706D2D02C21A00403682 /* TrashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrashView.swift; sourceTree = "<group>"; };
+		2238706E2D02C21A00403682 /* TrashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrashViewController.swift; sourceTree = "<group>"; };
+		223870702D02C21A00403682 /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
+		223870712D02C21A00403682 /* NotificationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		223870722D02C21A00403682 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		2238707F2D02C83400403682 /* Notif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notif.swift; sourceTree = "<group>"; };
 		225887C62CE2A4280009E60C /* RegisterFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFirebaseManager.swift; sourceTree = "<group>"; };
 		225887C82CE447B50009E60C /* ImageViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewUtils.swift; sourceTree = "<group>"; };
 		22AF33042CCC155300F024ED /* LandingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageView.swift; sourceTree = "<group>"; };
@@ -168,6 +192,7 @@
 				F1C05B2E2CFDB4BE00FEEA72 /* Edit Profile */,
 				F1C05B332CFE593E00FEEA72 /* Friends Page */,
 				F1C05B292CFD9DED00FEEA72 /* Profile Page */,
+				223870732D02C21A00403682 /* Notifications Screen */,
 				22AF330F2CCC7CB500F024ED /* Progress Indicator */,
 				2230D69A2CD833A1003A4EF6 /* NotificationNames.swift */,
 				225887C82CE447B50009E60C /* ImageViewUtils.swift */,
@@ -199,6 +224,56 @@
 				221DFF372CE9A61900EC9465 /* ForgotPasswordViewController.swift */,
 			);
 			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		223870662D02C21A00403682 /* NewNotifications Screen */ = {
+			isa = PBXGroup;
+			children = (
+				223870642D02C21A00403682 /* NewNotificationsView.swift */,
+				223870652D02C21A00403682 /* NewNotificationsViewController.swift */,
+			);
+			path = "NewNotifications Screen";
+			sourceTree = "<group>";
+		};
+		223870692D02C21A00403682 /* NotificationDetails Screen */ = {
+			isa = PBXGroup;
+			children = (
+				223870672D02C21A00403682 /* NotificationDetailsView.swift */,
+				223870682D02C21A00403682 /* NotificationDetailsViewController.swift */,
+			);
+			path = "NotificationDetails Screen";
+			sourceTree = "<group>";
+		};
+		2238706C2D02C21A00403682 /* Search Screen */ = {
+			isa = PBXGroup;
+			children = (
+				2238706A2D02C21A00403682 /* SearchView.swift */,
+				2238706B2D02C21A00403682 /* SearchViewController.swift */,
+			);
+			path = "Search Screen";
+			sourceTree = "<group>";
+		};
+		2238706F2D02C21A00403682 /* Trash Screen */ = {
+			isa = PBXGroup;
+			children = (
+				2238706D2D02C21A00403682 /* TrashView.swift */,
+				2238706E2D02C21A00403682 /* TrashViewController.swift */,
+			);
+			path = "Trash Screen";
+			sourceTree = "<group>";
+		};
+		223870732D02C21A00403682 /* Notifications Screen */ = {
+			isa = PBXGroup;
+			children = (
+				223870662D02C21A00403682 /* NewNotifications Screen */,
+				223870692D02C21A00403682 /* NotificationDetails Screen */,
+				2238706C2D02C21A00403682 /* Search Screen */,
+				2238706F2D02C21A00403682 /* Trash Screen */,
+				223870702D02C21A00403682 /* NotificationsTableViewCell.swift */,
+				223870712D02C21A00403682 /* NotificationsView.swift */,
+				223870722D02C21A00403682 /* NotificationsViewController.swift */,
+			);
+			path = "Notifications Screen";
 			sourceTree = "<group>";
 		};
 		225887C52CE2A3F70009E60C /* Register Screen */ = {
@@ -250,6 +325,7 @@
 				90B50D9F2CFE9A410064F355 /* User.swift */,
 				90B50DA12CFE9A730064F355 /* Chat.swift */,
 				90B50DA32CFE9A860064F355 /* Message.swift */,
+				2238707F2D02C83400403682 /* Notif.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -436,13 +512,17 @@
 				90B50DA42CFE9A860064F355 /* Message.swift in Sources */,
 				22AF331A2CCD69A800F024ED /* ProfileNotificationViewController.swift in Sources */,
 				90B50DA02CFE9A410064F355 /* User.swift in Sources */,
+				223870802D02C83400403682 /* Notif.swift in Sources */,
+				2238707C2D02C21A00403682 /* NotificationsTableViewCell.swift in Sources */,
 				90B50DC32CFE9CF00064F355 /* AddCourseViewController.swift in Sources */,
 				F14594892CFE800E003F0AF5 /* ChatView.swift in Sources */,
 				22AF33052CCC155300F024ED /* LandingPageView.swift in Sources */,
 				90B50DBC2CFE9C570064F355 /* CourseDetailView.swift in Sources */,
+				223870772D02C21A00403682 /* NotificationDetailsViewController.swift in Sources */,
 				90B50DAB2CFE9B2B0064F355 /* FriendsProgressView.swift in Sources */,
 				221321A22CBF6CE50067FD75 /* AppDelegate.swift in Sources */,
 				90B50DB02CFE9B7A0064F355 /* CourseUserListTableViewCell.swift in Sources */,
+				2238707E2D02C21A00403682 /* NotificationsViewController.swift in Sources */,
 				221321A42CBF6CE50067FD75 /* SceneDelegate.swift in Sources */,
 				90B50DA72CFE9AE10064F355 /* FriendsProgressViewController.swift in Sources */,
 				22AF330A2CCC3CAF00F024ED /* SignInPageViewController.swift in Sources */,
@@ -450,6 +530,7 @@
 				22AF33132CCC87A900F024ED /* RegisterPageViewController.swift in Sources */,
 				2230D69B2CD833A1003A4EF6 /* NotificationNames.swift in Sources */,
 				90B50DB52CFE9BE30064F355 /* MyCoursesViewController.swift in Sources */,
+				223870752D02C21A00403682 /* NewNotificationsViewController.swift in Sources */,
 				90B50DC72CFE9DE30064F355 /* CourseTableViewCell.swift in Sources */,
 				90B50D9C2CFE998A0064F355 /* Course.swift in Sources */,
 				90B50DA92CFE9B0F0064F355 /* FriendsProgressTableViewCell.swift in Sources */,
@@ -466,12 +547,19 @@
 				90B50DC02CFE9CA30064F355 /* CourseDetailViewController.swift in Sources */,
 				90B50DB92CFE9C1C0064F355 /* MyCoursesView.swift in Sources */,
 				22AF330E2CCC7CAF00F024ED /* ProgressSpinnerViewController.swift in Sources */,
+				223870742D02C21A00403682 /* NewNotificationsView.swift in Sources */,
 				F145948D2CFE8085003F0AF5 /* ChatMessage.swift in Sources */,
 				90B50DC52CFE9D0A0064F355 /* AddCourseView.swift in Sources */,
 				90B50DBE2CFE9C850064F355 /* SectionTableViewCell.swift in Sources */,
 				22AF330C2CCC3CCB00F024ED /* SignInPageView.swift in Sources */,
 				221DFF362CE9A60200EC9465 /* ForgotPasswordEmailView.swift in Sources */,
 				90B50DB22CFE9BA80064F355 /* CourseUserListViewController.swift in Sources */,
+				2238707B2D02C21A00403682 /* TrashViewController.swift in Sources */,
+				223870792D02C21A00403682 /* SearchViewController.swift in Sources */,
+				223870762D02C21A00403682 /* NotificationDetailsView.swift in Sources */,
+				2238707A2D02C21A00403682 /* TrashView.swift in Sources */,
+				2238707D2D02C21A00403682 /* NotificationsView.swift in Sources */,
+				223870782D02C21A00403682 /* SearchView.swift in Sources */,
 				22AF331E2CCD9A9000F024ED /* HomePageView.swift in Sources */,
 				F1C05B3D2CFE697200FEEA72 /* ChatViewController.swift in Sources */,
 				90B50DA22CFE9A730064F355 /* Chat.swift in Sources */,
