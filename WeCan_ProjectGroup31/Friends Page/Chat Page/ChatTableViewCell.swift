@@ -8,9 +8,10 @@
 import UIKit
 
 class ChatTableViewCell: UITableViewCell {
-    var messageLabel: UILabel!
+//    var messageLabel: UILabel!
     var nameLabel: UILabel!
     var timeLabel: UILabel!
+    var messageWithLinkTextView: UITextView! // Adela: Supports clickable links
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -31,12 +32,23 @@ class ChatTableViewCell: UITableViewCell {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(nameLabel)
 
-        // Initialize and configure messageLabel
-        messageLabel = UILabel()
-        messageLabel.font = UIFont.systemFont(ofSize: 16)
-        messageLabel.numberOfLines = 0 // Allow multi-line text
-        messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(messageLabel)
+//        // Initialize and configure messageLabel
+//        messageLabel = UILabel()
+//        messageLabel.font = UIFont.systemFont(ofSize: 16)
+//        messageLabel.numberOfLines = 0 // Allow multi-line text
+//        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+//        contentView.addSubview(messageLabel)
+        
+        // Initialize and configure messageWithLinkTextView
+        messageWithLinkTextView = UITextView()
+        messageWithLinkTextView.font = UIFont.systemFont(ofSize: 16)
+        messageWithLinkTextView.isEditable = false // Prevent editing
+        messageWithLinkTextView.isScrollEnabled = false // Adjust size to fit content
+        messageWithLinkTextView.dataDetectorTypes = [.link] // Detect and enable clickable links
+        messageWithLinkTextView.textContainerInset = .zero // Remove extra padding
+        messageWithLinkTextView.backgroundColor = .clear
+        messageWithLinkTextView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(messageWithLinkTextView)
 
         // Initialize and configure timeLabel
         timeLabel = UILabel()
@@ -56,12 +68,12 @@ class ChatTableViewCell: UITableViewCell {
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
             // Message label below the nameLabel
-            messageLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
-            messageLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            messageWithLinkTextView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
+            messageWithLinkTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            messageWithLinkTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
             // Time label below the messageLabel
-            timeLabel.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 4),
+            timeLabel.topAnchor.constraint(equalTo: messageWithLinkTextView.bottomAnchor, constant: 4),
             timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             timeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             timeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
@@ -69,22 +81,27 @@ class ChatTableViewCell: UITableViewCell {
     }
 
     func configureCell(with message: ChatMessage, isCurrentUser: Bool) {
-        // Configure UI elements based on message data
         nameLabel.text = isCurrentUser ? "You" : message.senderName
-        messageLabel.text = message.messageText
+
+        if let attributedMessage = message.attributedMessage {
+            messageWithLinkTextView.attributedText = attributedMessage
+            messageWithLinkTextView.isUserInteractionEnabled = true
+            messageWithLinkTextView.dataDetectorTypes = .link
+        } else {
+            messageWithLinkTextView.text = message.messageText
+        }
+
         timeLabel.text = DateFormatter.localizedString(from: message.timestamp, dateStyle: .short, timeStyle: .short)
 
-        // Adjust alignment and background color dynamically
+        // Adjust alignment dynamically
         if isCurrentUser {
             nameLabel.textAlignment = .right
-            messageLabel.textAlignment = .right
+            messageWithLinkTextView.textAlignment = .right
             timeLabel.textAlignment = .right
-            contentView.backgroundColor = .systemGray6
         } else {
             nameLabel.textAlignment = .left
-            messageLabel.textAlignment = .left
+            messageWithLinkTextView.textAlignment = .left
             timeLabel.textAlignment = .left
-            contentView.backgroundColor = .white
         }
     }
 

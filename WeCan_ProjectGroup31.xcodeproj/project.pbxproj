@@ -65,6 +65,9 @@
 		90B50DC32CFE9CF00064F355 /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50DC22CFE9CF00064F355 /* AddCourseViewController.swift */; };
 		90B50DC52CFE9D0A0064F355 /* AddCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50DC42CFE9D0A0064F355 /* AddCourseView.swift */; };
 		90B50DC72CFE9DE30064F355 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50DC62CFE9DE30064F355 /* CourseTableViewCell.swift */; };
+		90B50DCA2D04405E0064F355 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50DC92D04405E0064F355 /* InviteFriendsViewController.swift */; };
+		90B50DCC2D0440B70064F355 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50DCB2D0440B70064F355 /* FriendTableViewCell.swift */; };
+		90B50DCE2D0442DB0064F355 /* InviteFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B50DCD2D0442DB0064F355 /* InviteFriendsView.swift */; };
 		F14594892CFE800E003F0AF5 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14594882CFE800E003F0AF5 /* ChatView.swift */; };
 		F145948B2CFE803C003F0AF5 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145948A2CFE803C003F0AF5 /* ChatTableViewCell.swift */; };
 		F145948D2CFE8085003F0AF5 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145948C2CFE8085003F0AF5 /* ChatMessage.swift */; };
@@ -135,6 +138,9 @@
 		90B50DC22CFE9CF00064F355 /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
 		90B50DC42CFE9D0A0064F355 /* AddCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseView.swift; sourceTree = "<group>"; };
 		90B50DC62CFE9DE30064F355 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
+		90B50DC92D04405E0064F355 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
+		90B50DCB2D0440B70064F355 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		90B50DCD2D0442DB0064F355 /* InviteFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsView.swift; sourceTree = "<group>"; };
 		F14594882CFE800E003F0AF5 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		F145948A2CFE803C003F0AF5 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		F145948C2CFE8085003F0AF5 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatMessage.swift; path = "Friends Page/Chat Page/ChatMessage.swift"; sourceTree = "<group>"; };
@@ -184,6 +190,7 @@
 				22AF33182CCD64CE00F024ED /* Home Page - All Courses */,
 				90B50DC12CFE9CDA0064F355 /* Add Course */,
 				90B50DBA2CFE9C420064F355 /* Course Detail Screen */,
+				90B50DC82D04403F0064F355 /* Invite Friends Screen */,
 				90B50DB32CFE9BC10064F355 /* My Course List Screen */,
 				90B50DAC2CFE9B430064F355 /* Course User List Screen */,
 				90B50DA52CFE9AC10064F355 /* Friends Progress Screen */,
@@ -380,6 +387,16 @@
 			path = "Add Course";
 			sourceTree = "<group>";
 		};
+		90B50DC82D04403F0064F355 /* Invite Friends Screen */ = {
+			isa = PBXGroup;
+			children = (
+				90B50DC92D04405E0064F355 /* InviteFriendsViewController.swift */,
+				90B50DCB2D0440B70064F355 /* FriendTableViewCell.swift */,
+				90B50DCD2D0442DB0064F355 /* InviteFriendsView.swift */,
+			);
+			path = "Invite Friends Screen";
+			sourceTree = "<group>";
+		};
 		F1C05B292CFD9DED00FEEA72 /* Profile Page */ = {
 			isa = PBXGroup;
 			children = (
@@ -513,6 +530,7 @@
 				22AF331A2CCD69A800F024ED /* ProfileNotificationViewController.swift in Sources */,
 				90B50DA02CFE9A410064F355 /* User.swift in Sources */,
 				223870802D02C83400403682 /* Notif.swift in Sources */,
+				90B50DCE2D0442DB0064F355 /* InviteFriendsView.swift in Sources */,
 				2238707C2D02C21A00403682 /* NotificationsTableViewCell.swift in Sources */,
 				90B50DC32CFE9CF00064F355 /* AddCourseViewController.swift in Sources */,
 				F14594892CFE800E003F0AF5 /* ChatView.swift in Sources */,
@@ -533,6 +551,7 @@
 				223870752D02C21A00403682 /* NewNotificationsViewController.swift in Sources */,
 				90B50DC72CFE9DE30064F355 /* CourseTableViewCell.swift in Sources */,
 				90B50D9C2CFE998A0064F355 /* Course.swift in Sources */,
+				90B50DCC2D0440B70064F355 /* FriendTableViewCell.swift in Sources */,
 				90B50DA92CFE9B0F0064F355 /* FriendsProgressTableViewCell.swift in Sources */,
 				F1C05B372CFE688300FEEA72 /* FriendsViewController.swift in Sources */,
 				22AF33152CCC87BE00F024ED /* RegisterPageView.swift in Sources */,
@@ -543,6 +562,7 @@
 				F1C05B302CFE54CC00FEEA72 /* PublicProfileViewController.swift in Sources */,
 				22AF331C2CCD6A0300F024ED /* ProfileNotificationView.swift in Sources */,
 				90B50D9E2CFE99E00064F355 /* CourseProgress.swift in Sources */,
+				90B50DCA2D04405E0064F355 /* InviteFriendsViewController.swift in Sources */,
 				F145948F2D0153B9003F0AF5 /* PublicCoursesViewController.swift in Sources */,
 				90B50DC02CFE9CA30064F355 /* CourseDetailViewController.swift in Sources */,
 				90B50DB92CFE9C1C0064F355 /* MyCoursesView.swift in Sources */,

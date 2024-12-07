@@ -1,8 +1,9 @@
 //
 //  FriendsProgressViewController.swift
-//  WeCan_ProjectGroup31
+//  CS5520 Final Project - WeCan
 //
-//  Created by FengAdela on 12/2/24.
+//  Group 31
+//  Created by Jiehua Feng
 //
 
 import UIKit
@@ -46,7 +47,7 @@ class FriendsProgressViewController: UIViewController {
     
     private func setupNavigationBar() {
         let homeButton = UIBarButtonItem(
-            image: UIImage(systemName: "house.fill"), // "User/People" symbol
+            image: UIImage(systemName: "house.fill"),
             style: .plain,
             target: self,
             action: #selector(onTapHomeButton)
@@ -55,13 +56,12 @@ class FriendsProgressViewController: UIViewController {
     }
 
     @objc private func onTapHomeButton() {
-        // Navigate to HomePageViewController
         let homePageVC = HomePageViewController()
         navigationController?.pushViewController(homePageVC, animated: true)
     }
 
     private func fetchFriendsData(for courseId: String) {
-        guard let currentUserEmail = currentUser?.email else {
+        guard let currentUserEmail = currentUser?.email?.lowercased() else {
             print("Error: Current user email is nil")
             return
         }
@@ -74,7 +74,7 @@ class FriendsProgressViewController: UIViewController {
                 return
             }
 
-            let followerEmails = snapshot?.documents.map { $0.documentID } ?? []
+            let followers = Set(snapshot?.documents.map { $0.documentID.lowercased() } ?? [])
 
             // Fetch following
             self.database.collection("users").document(currentUserEmail).collection("following").getDocuments { (snapshot, error) in
@@ -83,20 +83,22 @@ class FriendsProgressViewController: UIViewController {
                     return
                 }
 
-                let followingEmails = snapshot?.documents.map { $0.documentID } ?? []
-                let potentialFriendEmails = Set(followerEmails).union(followingEmails)
+                let following = Set(snapshot?.documents.map { $0.documentID.lowercased() } ?? [])
+
+                // Identify mutual followers (real friends)
+                let mutualFriendsEmails = followers.intersection(following)
 
                 // Filter friends taking the same course
-                self.filterFriendsTakingCourse(potentialFriendEmails: Array(potentialFriendEmails), courseId: courseId)
+                self.filterFriendsTakingCourse(mutualFriendsEmails: Array(mutualFriendsEmails), courseId: courseId)
             }
         }
     }
 
-    private func filterFriendsTakingCourse(potentialFriendEmails: [String], courseId: String) {
+    private func filterFriendsTakingCourse(mutualFriendsEmails: [String], courseId: String) {
         let group = DispatchGroup()
         var filteredFriends = [String]()
 
-        for email in potentialFriendEmails {
+        for email in mutualFriendsEmails {
             group.enter()
             database.collection("users").document(email).getDocument { document, error in
                 if let document = document, let data = document.data(),
@@ -112,6 +114,7 @@ class FriendsProgressViewController: UIViewController {
             self.fetchFriendsProgress(for: filteredFriends)
         }
     }
+
     private func fetchFriendsProgress(for friendEmails: [String]) {
         let group = DispatchGroup()
         var loadedProgress: [(user: User, progress: [Int: Bool])] = []
@@ -119,7 +122,7 @@ class FriendsProgressViewController: UIViewController {
         for email in friendEmails {
             group.enter()
             database.collection("users").document(email).getDocument { [weak self] document, error in
-                guard let self = self else { return group.leave() } // Safeguard
+                guard let self = self else { return group.leave() }
                 guard let document = document, let userData = document.data(),
                       let user = User(documentData: userData) else {
                     print("Error: Could not load user data for \(email)")
@@ -146,9 +149,6 @@ class FriendsProgressViewController: UIViewController {
             self.friendsProgressView.tableView.reloadData()
         }
     }
-
-
-
 }
 
 // MARK: - Table View Delegate and Data Source
@@ -167,5 +167,3 @@ extension FriendsProgressViewController: UITableViewDelegate, UITableViewDataSou
         return cell
     }
 }
-
-

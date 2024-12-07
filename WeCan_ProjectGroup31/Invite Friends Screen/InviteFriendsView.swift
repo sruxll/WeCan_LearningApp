@@ -1,5 +1,5 @@
 //
-//  FriendsProgressView.swift
+//  InviteFriendsView.swift
 //  CS5520 Final Project - WeCan
 //
 //  Group 31
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FriendsProgressView: UIView {
+class InviteFriendsView: UIView {
     let tableView = UITableView()
 
     override init(frame: CGRect) {
@@ -23,13 +23,13 @@ class FriendsProgressView: UIView {
     private func setupView() {
         backgroundColor = .white
 
-        // Table view setup
+        // Configure Table View
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorStyle = .singleLine
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = 70 // Fixed row height
+        tableView.separatorStyle = .none // Remove separators
         addSubview(tableView)
 
+        // Layout Constraints
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -38,4 +38,3 @@ class FriendsProgressView: UIView {
         ])
     }
 }
-

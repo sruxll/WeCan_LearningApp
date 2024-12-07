@@ -1,8 +1,9 @@
 //
 //  SectionTableViewCell.swift
-//  WeCan_ProjectGroup31
+//  CS5520 Final Project - WeCan
 //
-//  Created by FengAdela on 12/2/24.
+//  Group 31
+//  Created by Jiehua Feng
 //
 
 import UIKit
@@ -30,7 +31,7 @@ class SectionTableViewCell: UITableViewCell {
         completeButton.backgroundColor = .systemBlue
         completeButton.layer.cornerRadius = 8
         completeButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
-        completeButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        completeButton.titleLabel?.font = UIFont.systemFont(ofSize: 10, weight: .semibold)
         contentView.addSubview(completeButton)
     }
 
@@ -57,6 +58,7 @@ class SectionTableViewCell: UITableViewCell {
             completeButton.isEnabled = false
             completeButton.backgroundColor = .gray
             completeButton.setTitle("Completed", for: .normal)
+            completeButton.titleLabel?.font = UIFont.systemFont(ofSize: 10)
         } else {
             completeButton.isEnabled = true
             completeButton.backgroundColor = .systemBlue

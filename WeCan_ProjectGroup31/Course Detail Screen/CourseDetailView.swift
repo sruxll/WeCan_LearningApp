@@ -1,8 +1,9 @@
 //
 //  CourseDetailView.swift
-//  WeCan_ProjectGroup31
+//  CS5520 Final Project - WeCan
 //
-//  Created by FengAdela on 12/2/24.
+//  Group 31
+//  Created by Jiehua Feng
 //
 
 import UIKit

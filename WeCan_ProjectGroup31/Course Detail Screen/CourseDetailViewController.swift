@@ -1,8 +1,9 @@
 //
 //  CourseDetailViewController.swift
-//  WeCan_ProjectGroup31
+//  CS5520 Final Project - WeCan
 //
-//  Created by FengAdela on 12/2/24.
+//  Group 31
+//  Created by Jiehua Feng
 //
 
 import UIKit
@@ -20,6 +21,13 @@ class CourseDetailViewController: UIViewController {
         self.isCourseAdded = isCourseAdded
         super.init(nibName: nil, bundle: nil)
     }
+    
+    init(courseID: String) {
+        self.course = Course(id: courseID) // Temporary initialization
+        super.init(nibName: nil, bundle: nil)
+        fetchCourseDetails(courseID: courseID)
+    }
+
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -45,6 +53,40 @@ class CourseDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         // Check if the course is added and fetch progress whenever the screen appears
         checkIfCourseIsAdded()
+    }
+    
+    // Function to fetch course details asynchronously
+    private func fetchCourseDetails(courseID: String) {
+        let courseRef = Firestore.firestore().collection("courses").document(courseID)
+
+        courseRef.getDocument { [weak self] document, error in
+            guard let self = self else { return }
+
+            if let error = error {
+                print("Error fetching course details: \(error)")
+                return
+            }
+
+            guard let data = document?.data() else {
+                print("No course data found for ID: \(courseID)")
+                return
+            }
+
+            // Parse course data
+            do {
+                let fetchedCourse = try Firestore.Decoder().decode(Course.self, from: data)
+                self.course = fetchedCourse
+
+                // Update UI with the fetched course details
+                DispatchQueue.main.async {
+                    self.title = self.course.name
+                    self.courseDetailView.descriptionLabel.text = self.course.description
+                    self.courseDetailView.tableView.reloadData()
+                }
+            } catch {
+                print("Error decoding course data: \(error)")
+            }
+        }
     }
 
     private func configureButtons() {
@@ -147,7 +189,66 @@ class CourseDetailViewController: UIViewController {
     }
 
     @objc private func inviteTapped() {
-        print("Invite friends tapped")
+        let inviteFriendsVC = InviteFriendsViewController(course: self.course)
+        self.navigationController?.pushViewController(inviteFriendsVC, animated: true)
+    }
+
+    private func fetchFriendsData(for courseId: String, completion: @escaping ([User]) -> Void) {
+        guard let currentUserEmail = Auth.auth().currentUser?.email?.lowercased() else {
+            print("Error: Current user email is nil")
+            completion([])
+            return
+        }
+
+        let database = Firestore.firestore()
+
+        database.collection("users").document(currentUserEmail).collection("followers").getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching followers: \(error.localizedDescription)")
+                completion([])
+                return
+            }
+
+            let followerEmails = snapshot?.documents.map { $0.documentID.lowercased() } ?? []
+
+            database.collection("users").document(currentUserEmail).collection("following").getDocuments { (snapshot, error) in
+                if let error = error {
+                    print("Error fetching following: \(error.localizedDescription)")
+                    completion([])
+                    return
+                }
+
+                let followingEmails = snapshot?.documents.map { $0.documentID.lowercased() } ?? []
+                let mutualFriendEmails = Set(followerEmails).intersection(followingEmails)
+
+                // Fetch friends who are not subscribed to the course
+                self.filterFriendsNotSubscribed(potentialFriendEmails: Array(mutualFriendEmails), courseId: courseId, completion: completion)
+            }
+        }
+    }
+
+    private func filterFriendsNotSubscribed(potentialFriendEmails: [String], courseId: String, completion: @escaping ([User]) -> Void) {
+        let group = DispatchGroup()
+        let database = Firestore.firestore()
+        var filteredFriends = [User]()
+
+        for email in potentialFriendEmails {
+            group.enter()
+            database.collection("users").document(email).getDocument { document, error in
+                defer { group.leave() }
+
+                if let document = document, let data = document.data(),
+                   let subscribedCourses = data["subscribedCourses"] as? [String],
+                   !subscribedCourses.contains(courseId),
+                   let user = User(documentData: data) {
+                    filteredFriends.append(user)
+                }
+            }
+        }
+
+        group.notify(queue: .main) {
+            completion(filteredFriends)
+        }
     }
 
     @objc private func addToMyCourseTapped() {
@@ -183,23 +284,6 @@ class CourseDetailViewController: UIViewController {
             self?.configureButtons()
             self?.courseDetailView.tableView.reloadData()
         }
-        
-        do {
-            // generate notification after that
-            let notifRef = Firestore.firestore().collection("users").document(userEmail).collection("notifications")
-            let newNotif = Notif(messageFrom: "System", message: "The new course: \(course.name) is successfully added!", requiresResponse: false, isNotificationRead: false, isDeleted: false)
-            try notifRef.addDocument(from: newNotif){ error in
-                if let error = error {
-                    print("Error adding a notification: \(error.localizedDescription)")
-                    self.showAlert("Error adding a notification!")
-                } else {
-                    print("Document successfully written!")
-                }
-            }
-        } catch {
-            print("Error adding a notification!")
-            self.showAlert("Error adding a notification!")
-        }
     }
 
     @objc private func viewFriendsProgressTapped() {
@@ -211,7 +295,6 @@ class CourseDetailViewController: UIViewController {
         let courseUserListVC = CourseUserListViewController(courseID: course.id)
         navigationController?.pushViewController(courseUserListVC, animated: true)
     }
-
 }
 
 // MARK: - Table View Delegate and Data Source
@@ -228,15 +311,7 @@ extension CourseDetailViewController: UITableViewDelegate, UITableViewDataSource
         let section = course.schedule[indexPath.row]
         let isCompleted = userProgress[section.sectionNumber] ?? false
 
-        // Pass the isCourseAdded flag to control the visibility of the complete button
         cell.configure(with: section.title, isCompleted: isCompleted, showCompleteButton: isCourseAdded)
-
-        // Update button appearance if completed
-        let softGreen = UIColor(red: 220/255, green: 255/255, blue: 220/255, alpha: 1.0) // Soft pale green
-        cell.completeButton.isEnabled = !isCompleted
-        cell.completeButton.backgroundColor = isCompleted ? .systemGray6 : .systemBlue
-        cell.completeButton.setTitleColor(isCompleted ? .gray : .white, for: .normal)
-        cell.completeButton.setTitle(isCompleted ? "Completed!" : "Complete", for: .normal)
 
         cell.completeButton.addTarget(self, action: #selector(completeSection(_:)), for: .touchUpInside)
         cell.completeButton.tag = section.sectionNumber
@@ -247,7 +322,6 @@ extension CourseDetailViewController: UITableViewDelegate, UITableViewDataSource
     @objc private func completeSection(_ sender: UIButton) {
         let sectionNumber = sender.tag
 
-        // Check if this is the first non-completed section
         for i in 1..<sectionNumber {
             if userProgress[i] != true {
                 showAlert(title: "Finish Previous Sections", message: "Please complete previous sections before completing this one.")
@@ -255,17 +329,14 @@ extension CourseDetailViewController: UITableViewDelegate, UITableViewDataSource
             }
         }
 
-        // Show confirmation alert
         let section = course.schedule.first { $0.sectionNumber == sectionNumber }
         showAlert(
             title: "Complete Section",
             message: "Are you sure you want to complete \(section?.title ?? "this section")?",
             confirmHandler: { [weak self] in
                 guard let self = self else { return }
-                self.userProgress[sectionNumber] = true // Mark this section as completed
+                self.userProgress[sectionNumber] = true
                 self.courseDetailView.tableView.reloadData()
-
-                // Update Firestore
                 self.updateProgressInFirestore(sectionNumber: sectionNumber)
             }
         )

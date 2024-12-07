@@ -8,13 +8,23 @@
 
 import Foundation
 
-struct Course {
+struct Course: Codable {
     let id: String // Unique identifier
-    let name: String // Course name
-    let description: String // Course description
-    let imageURL: String // URL for the course image
-    let schedule: [Section] // List of sections in the course
+    var name: String // Course name
+    var description: String // Course description
+    var imageURL: String // URL for the course image
+    var schedule: [Section] // List of sections in the course
     var subscribedUsers: [String] // List of user IDs subscribed to the course
+
+    // Lightweight initializer with only an ID
+    init(id: String) {
+        self.id = id
+        self.name = "Unknown Course" // Placeholder
+        self.description = "Description not available" // Placeholder
+        self.imageURL = "" // Placeholder for the image URL
+        self.schedule = [] // Empty schedule
+        self.subscribedUsers = [] // No subscribed users initially
+    }
 
     // Initialize Course from Firestore document data
     init?(document: [String: Any]) {
@@ -49,7 +59,8 @@ struct Course {
     }
 }
 
-struct Section {
+
+struct Section: Codable {
     let sectionNumber: Int // Section number (e.g., 1, 2, etc.)
     let title: String // Title of the section
 

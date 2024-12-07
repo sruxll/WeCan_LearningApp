@@ -9,12 +9,13 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 
-class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     let chatView = ChatView()
     var messages = [ChatMessage]()
     var currentUser: FirebaseAuth.User?
     var chatPartnerEmail: String? // The selected chat partner's email
     let database = Firestore.firestore()
+    var course: Course? // Adela: Pass the course object for the usage of inviation message
 
     override func loadView() {
         view = chatView
@@ -33,8 +34,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         chatView.tableView.estimatedRowHeight = 100
 
         chatView.sendButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+        
+        chatView.textViewMessage.delegate = self // Adela: set UITextViewDelegate for the textViewMessage
 
         loadMessages()
+        print("ChatViewController loaded with course: \(course?.name ?? "None"), ID: \(course?.id ?? "None")")
     }
 
     func loadMessages() {
@@ -69,7 +73,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     @objc func sendMessage() {
-        guard let text = chatView.textField.text, !text.isEmpty,
+        guard let text = chatView.textViewMessage.text, !text.isEmpty,
               let currentUser = currentUser,
               let currentUserEmail = currentUser.email,
               let chatPartnerEmail = chatPartnerEmail else {
@@ -78,22 +82,39 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         let chatID = generateChatID(for: currentUserEmail, and: chatPartnerEmail)
-
+        
+        //Adela: Include the course link in the message
+        let courseLink = course?.id != nil ? "course://\(course!.id)" : nil
+        print("Course Link: \(courseLink ?? "None")")
+        print("Course ID: \(course?.id ?? "None")")
+        
+        // Adela: Replace placeholders in the invitation message
+        let formattedText = text
+            .replacingOccurrences(of: "{courseName}", with: course?.name ?? "")
+            .replacingOccurrences(of: "{courseLink}", with: courseLink ?? "")
+        
         let message = ChatMessage(
             senderID: currentUser.uid,
             senderName: currentUser.displayName ?? "Anonymous",
-            messageText: text,
-            timestamp: Date()
+            messageText: formattedText, //Adela: Use the formatted message text
+            timestamp: Date(),
+            courseID: course?.id,
+            courseLink: courseLink //Adela: Include the course link explicitly
         )
 
         // Save message to Firebase
-        try? database.collection("chats").document(chatID).collection("messages").addDocument(from: message)
+        do {
+            try database.collection("chats").document(chatID).collection("messages").addDocument(from: message)
+            print("Message sent successfully!")
+        } catch {
+            print("Error sending message: \(error.localizedDescription)")
+        }
 
         // Save chat references for both users
         saveChatReference(for: currentUserEmail, chatPartnerEmail: chatPartnerEmail, chatID: chatID)
         saveChatReference(for: chatPartnerEmail, chatPartnerEmail: currentUserEmail, chatID: chatID)
 
-        chatView.textField.text = ""
+        chatView.textViewMessage.text = ""
         // Scroll to the bottom after sending a message
         DispatchQueue.main.async {
             self.scrollToBottom(animated: true)
@@ -162,7 +183,31 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messages[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatTableViewCell", for: indexPath) as! ChatTableViewCell
-        cell.configureCell(with: message, isCurrentUser: message.senderID == currentUser?.uid)
+//        cell.configureCell(with: message, isCurrentUser: message.senderID == currentUser?.uid)
+        
+        // Adela: enable rich text
+        if let attributedMessage = message.attributedMessage {
+            cell.messageWithLinkTextView.attributedText = attributedMessage
+            cell.messageWithLinkTextView.isUserInteractionEnabled = true
+            cell.messageWithLinkTextView.delegate = self
+        } else {
+            cell.configureCell(with: message, isCurrentUser: message.senderID == currentUser?.uid)
+        }
+        
         return cell
+    }
+    
+    //Adela: Handle Course Link
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        if URL.scheme == "course" {
+            // Extract courseID from the URL
+            if let courseID = URL.host {
+                // Navigate to CourseDetailViewController
+                let courseDetailVC = CourseDetailViewController(courseID: courseID)
+                navigationController?.pushViewController(courseDetailVC, animated: true)
+            }
+            return false // Prevent default handling
+        }
+        return true // Allow other links to work as expected
     }
 }
