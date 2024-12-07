@@ -28,11 +28,17 @@ class SignInPageViewController: UIViewController {
     }
     
     @objc func onSignInButtonTapped(){
-        if let email = signInPage.emailTextField.text,
-           let password = signInPage.passwordTextField.text{
-            // sign in logic for firebase
-            self.signInToFirebase(email: email, password: password)
+        guard let email = signInPage.emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !email.isEmpty else {
+            self.showAlert("Email cannot be empty!")
+            return
         }
+        
+        guard let password = signInPage.passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !password.isEmpty else {
+            self.showAlert("Password cannot be empty!")
+            return
+        }
+        // sign in logic for firebase
+        self.signInToFirebase(email: email.lowercased(), password: password)
     }
     
     func signInToFirebase(email: String, password: String){
@@ -45,6 +51,10 @@ class SignInPageViewController: UIViewController {
                 // hide the progress indicator
                 self.hideActivityIndicator()
                 clearEmailPasswordField()
+                
+                // save user creditential to defaults
+                UserAccessCredential.setUserCreditential(userName: email, userPassword: password)
+
                 NotificationCenter.default.post(name: .userSignIn, object: result?.user)
             }else{
                 //alert that no user found or password wrong

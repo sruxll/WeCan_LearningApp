@@ -74,6 +74,9 @@ class HomePageViewController: UIViewController {
     }
     
     @objc func notificationUserLogout(notofication: Notification){
+        // clear user creditential
+        UserAccessCredential.clearUserCreditential()
+
         navigationController?.setViewControllers([self.landingPageController!], animated: true)
     }
     

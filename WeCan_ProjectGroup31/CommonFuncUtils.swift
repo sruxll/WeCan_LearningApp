@@ -24,3 +24,22 @@ extension UIImage {
             }
     }
 }
+
+class UserAccessCredential {
+    static func setUserCreditential(userName: String, userPassword: String) {
+        UserDefaults.standard.set(userName, forKey: "weCanUserName")
+        UserDefaults.standard.set(userPassword, forKey: "weCanUserPassword")
+    }
+    
+    static func getUserCreditential() -> (String?, String?) {
+        return (
+            UserDefaults.standard.object(forKey: "weCanUserName") as? String,
+            UserDefaults.standard.object(forKey: "weCanUserPassword") as? String
+        )
+    }
+
+    static func clearUserCreditential(){
+        UserDefaults.standard.removeObject(forKey: "weCanUserName")
+        UserDefaults.standard.removeObject(forKey: "weCanUserPassword")
+    }
+}

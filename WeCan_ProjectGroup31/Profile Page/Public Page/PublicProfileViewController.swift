@@ -130,7 +130,11 @@ class PublicProfileViewController: UIViewController {
     }
     
     @objc func onFollowButtonTapped() {
-        guard let currentUserEmail = currentUser?.email, let publicUserId = publicUserId else {
+        guard let currentUserEmail = currentUser?.email,
+                let publicUserId = publicUserId,
+              let currentUsername = currentUser?.displayName,
+              let publicUserName = publicUserName
+        else {
             print("Current user or public user ID is nil")
             return
         }
@@ -151,6 +155,22 @@ class PublicProfileViewController: UIViewController {
                     self?.updateFollowButtonState()
                 } else {
                     print("Successfully added following")
+                    do {
+                        // generate notification after that
+                        let notifRef = Firestore.firestore().collection("users").document(currentUserEmail).collection("notifications")
+                        let newNotif = Notif(messageFrom: "System", message: "You started following \(publicUserName)!", requiresResponse: false, isNotificationRead: false, isDeleted: false)
+                        try notifRef.addDocument(from: newNotif){ error in
+                            if let error = error {
+                                print("Error adding a notification: \(error.localizedDescription)")
+                                self?.showAlert("Error adding a notification!")
+                            } else {
+                                print("Document successfully written!")
+                            }
+                        }
+                    } catch {
+                        print("Error adding a notification!")
+                        self?.showAlert("Error adding a notification!")
+                    }
                 }
             }
             
@@ -159,6 +179,22 @@ class PublicProfileViewController: UIViewController {
                     print("Error adding followers: \(error.localizedDescription)")
                 } else {
                     print("Successfully added followers")
+                    do {
+                        // generate notification after that
+                        let notifRef = Firestore.firestore().collection("users").document(publicUserId).collection("notifications")
+                        let newNotif = Notif(messageFrom: "System", message: "\(currentUsername) started following you!", requiresResponse: false, isNotificationRead: false, isDeleted: false)
+                        try notifRef.addDocument(from: newNotif){ error in
+                            if let error = error {
+                                print("Error adding a notification: \(error.localizedDescription)")
+                                self.showAlert("Error adding a notification!")
+                            } else {
+                                print("Document successfully written!")
+                            }
+                        }
+                    } catch {
+                        print("Error adding a notification!")
+                        self.showAlert("Error adding a notification!")
+                    }
                 }
             }
         } else {
@@ -170,6 +206,22 @@ class PublicProfileViewController: UIViewController {
                     self?.updateFollowButtonState()
                 } else {
                     print("Successfully removed following")
+                    do {
+                        // generate notification after that
+                        let notifRef = Firestore.firestore().collection("users").document(currentUserEmail).collection("notifications")
+                        let newNotif = Notif(messageFrom: "System", message: "You unfollowed \(publicUserName)!", requiresResponse: false, isNotificationRead: false, isDeleted: false)
+                        try notifRef.addDocument(from: newNotif){ error in
+                            if let error = error {
+                                print("Error adding a notification: \(error.localizedDescription)")
+                                self?.showAlert("Error adding a notification!")
+                            } else {
+                                print("Document successfully written!")
+                            }
+                        }
+                    } catch {
+                        print("Error adding a notification!")
+                        self?.showAlert("Error adding a notification!")
+                    }
                 }
             }
             
@@ -178,6 +230,22 @@ class PublicProfileViewController: UIViewController {
                     print("Error removing followers: \(error.localizedDescription)")
                 } else {
                     print("Successfully removed followers")
+                    do {
+                        // generate notification after that
+                        let notifRef = Firestore.firestore().collection("users").document(publicUserId).collection("notifications")
+                        let newNotif = Notif(messageFrom: "System", message: "\(currentUsername) unfollowed you!", requiresResponse: false, isNotificationRead: false, isDeleted: false)
+                        try notifRef.addDocument(from: newNotif){ error in
+                            if let error = error {
+                                print("Error adding a notification: \(error.localizedDescription)")
+                                self.showAlert("Error adding a notification!")
+                            } else {
+                                print("Document successfully written!")
+                            }
+                        }
+                    } catch {
+                        print("Error adding a notification!")
+                        self.showAlert("Error adding a notification!")
+                    }
                 }
             }
         }

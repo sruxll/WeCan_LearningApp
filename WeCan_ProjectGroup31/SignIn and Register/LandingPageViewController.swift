@@ -41,6 +41,7 @@ class LandingPageViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(notificationUserJumpToSigIn(notification:)), name: .userPasswordReset, object: nil)
         
+        validateUserCreditential()
     }
     
     @objc func onButtonSignInTapped(){
@@ -67,6 +68,20 @@ class LandingPageViewController: UIViewController {
     
     @objc func notificationUserForgotPassword(notification: Notification){
         navigationController?.pushViewController(forgotPasswordController, animated: false)
+    }
+    
+    func validateUserCreditential(){
+        let creditential = UserAccessCredential.getUserCreditential()
+        if let userName = creditential.0,
+            let userPassword = creditential.1 {
+            FirebaseAuth.Auth.auth().signIn(withEmail: userName, password: userPassword, completion: {[self](result, error) in
+                if error == nil{
+                    // user authenticated
+                    homePageController.currentUser = result?.user
+                    navigationController?.setViewControllers([self.homePageController], animated: false)
+                }
+            })
+        }
     }
 }
 

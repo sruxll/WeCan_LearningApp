@@ -38,25 +38,50 @@ extension RegisterPageViewController{
     }
     
     func registerUser(photoURL: URL?){
-        if let name = registerPage.textFieldName.text,
-           let email = registerPage.textFieldEmail.text,
-           let password = registerPage.textFieldPassword.text{
-            Auth.auth().createUser(withEmail: email, password: password, completion: {(result, error) in
-                if error == nil{
-                    let newUserRef = self.database.collection("users").document(email)
-                    newUserRef.setData(["username": name, "email": email, "photoURL": photoURL?.absoluteString ?? ""], completion: { error in
-                        if error == nil {
-                            print("Document successfully added!")
-                        }else{
-                            self.showAlert("Error adding document!")
-                        }
-                    })
-                    self.setNameAndPhotoOfTheUserInFirebaseAuth(name: name, email: email, photoURL: photoURL)
-                }else{
-                    self.showAlert("The email address is already in use by another account!")
-                }
-            })
+        guard let name = registerPage.textFieldName.text?.trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty else {
+            self.showAlert("Username cannot be empty!")
+            self.hideActivityIndicator()
+            return
         }
+        
+        guard let inputEmail = registerPage.textFieldEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines), !inputEmail.isEmpty else {
+            self.showAlert("Email cannot be empty!")
+            self.hideActivityIndicator()
+            return
+        }
+        let email = inputEmail.lowercased()
+        
+        guard let password = registerPage.textFieldPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines), !password.isEmpty else {
+            self.showAlert("Password cannot be empty!")
+            self.hideActivityIndicator()
+            return
+        }
+        
+        if password.count < 6 {
+            self.showAlert("Password must be at least 6 characters long!")
+            self.hideActivityIndicator()
+            return
+        }
+        
+        Auth.auth().createUser(withEmail: email, password: password, completion: {(result, error) in
+            if error == nil{
+                let newUserRef = self.database.collection("users").document(email)
+                newUserRef.setData(["username": name, "email": email, "photoURL": photoURL?.absoluteString ?? ""], completion: { error in
+                    if error == nil {
+                        print("Document successfully added!")
+                        // save user creditential to defaults
+                        UserAccessCredential.setUserCreditential(userName: email, userPassword: password)
+                    }else{
+                        self.showAlert("Error adding document!")
+                    }
+                })
+                self.setNameAndPhotoOfTheUserInFirebaseAuth(name: name, email: email, photoURL: photoURL)
+            }else{
+                self.showAlert("The email address is already in use by another account!")
+                self.hideActivityIndicator()
+            }
+        })
+
     }
     
     func setNameAndPhotoOfTheUserInFirebaseAuth(name: String, email: String, photoURL: URL?){
@@ -64,10 +89,10 @@ extension RegisterPageViewController{
         changeRequest?.displayName = name
         changeRequest?.photoURL = photoURL
         changeRequest?.commitChanges(completion: {(error) in
+            self.hideActivityIndicator()
             if error != nil {
                 self.showAlert("Error on changing request!")
             }else{
-                self.hideActivityIndicator()
                 self.clearTextFields()
                 self.navigationController?.popViewController(animated: false)
                 NotificationCenter.default.post(name: .userSignUp, object: Auth.auth().currentUser)
