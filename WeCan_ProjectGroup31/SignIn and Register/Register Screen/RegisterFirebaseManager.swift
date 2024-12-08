@@ -38,12 +38,6 @@ extension RegisterPageViewController{
     }
     
     func registerUser(photoURL: URL?){
-        guard let name = registerPage.textFieldName.text?.trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty else {
-            self.showAlert("Username cannot be empty!")
-            self.hideActivityIndicator()
-            return
-        }
-        
         guard let inputEmail = registerPage.textFieldEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines), !inputEmail.isEmpty else {
             self.showAlert("Email cannot be empty!")
             self.hideActivityIndicator()
@@ -59,6 +53,12 @@ extension RegisterPageViewController{
         
         if password.count < 6 {
             self.showAlert("Password must be at least 6 characters long!")
+            self.hideActivityIndicator()
+            return
+        }
+        
+        guard let name = registerPage.textFieldName.text?.trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty else {
+            self.showAlert("Username cannot be empty!")
             self.hideActivityIndicator()
             return
         }
