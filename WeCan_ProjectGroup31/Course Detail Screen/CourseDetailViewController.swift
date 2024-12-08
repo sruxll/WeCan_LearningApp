@@ -40,6 +40,11 @@ class CourseDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = course.name
+        // modify title font
+        let titleAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.systemBrown,
+            .font:UIFont.boldSystemFont(ofSize: 20)]
+        navigationController?.navigationBar.titleTextAttributes = titleAttributes
 
         // Set up UI
         courseDetailView.descriptionLabel.text = course.description
@@ -97,6 +102,11 @@ class CourseDetailViewController: UIViewController {
             target: self,
             action: isCourseAdded ? #selector(inviteTapped) : #selector(addToMyCourseTapped)
         )
+        // Set smaller font size and other text attributes
+        navButton.setTitleTextAttributes([
+            .font: UIFont.boldSystemFont(ofSize: 15), // Smaller font size
+            .foregroundColor: UIColor.systemBlue
+        ], for: .normal)
         navigationItem.rightBarButtonItem = navButton
 
         // Bottom action button

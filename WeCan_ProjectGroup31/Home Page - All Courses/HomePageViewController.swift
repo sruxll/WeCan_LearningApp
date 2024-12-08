@@ -30,7 +30,9 @@ class HomePageViewController: UIViewController {
 
         title = "Home"
         // modify title font
-        let titleAttributes: [NSAttributedString.Key: Any] = [.font:UIFont.boldSystemFont(ofSize: 22)]
+        let titleAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.systemBrown,
+            .font:UIFont.boldSystemFont(ofSize: 20)]
         navigationController?.navigationBar.titleTextAttributes = titleAttributes
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.fill"), style: .plain, target: self, action: #selector(onProfileBarButtonTapped))

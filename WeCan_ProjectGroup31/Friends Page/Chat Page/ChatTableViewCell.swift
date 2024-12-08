@@ -7,11 +7,10 @@
 
 import UIKit
 
-class ChatTableViewCell: UITableViewCell {
-//    var messageLabel: UILabel!
+class ChatTableViewCell: UITableViewCell, UITextViewDelegate {
     var nameLabel: UILabel!
     var timeLabel: UILabel!
-    var messageWithLinkTextView: UITextView! // Adela: Supports clickable links
+    var messageWithLinkTextView: UITextView!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -24,7 +23,6 @@ class ChatTableViewCell: UITableViewCell {
     }
 
     private func setupUI() {
-        // Initialize and configure nameLabel
         nameLabel = UILabel()
         nameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         nameLabel.textColor = .gray
@@ -32,25 +30,17 @@ class ChatTableViewCell: UITableViewCell {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(nameLabel)
 
-//        // Initialize and configure messageLabel
-//        messageLabel = UILabel()
-//        messageLabel.font = UIFont.systemFont(ofSize: 16)
-//        messageLabel.numberOfLines = 0 // Allow multi-line text
-//        messageLabel.translatesAutoresizingMaskIntoConstraints = false
-//        contentView.addSubview(messageLabel)
-        
-        // Initialize and configure messageWithLinkTextView
         messageWithLinkTextView = UITextView()
         messageWithLinkTextView.font = UIFont.systemFont(ofSize: 16)
-        messageWithLinkTextView.isEditable = false // Prevent editing
-        messageWithLinkTextView.isScrollEnabled = false // Adjust size to fit content
-        messageWithLinkTextView.dataDetectorTypes = [.link] // Detect and enable clickable links
-        messageWithLinkTextView.textContainerInset = .zero // Remove extra padding
+        messageWithLinkTextView.isEditable = false
+        messageWithLinkTextView.isScrollEnabled = false
+        messageWithLinkTextView.textContainerInset = .zero
         messageWithLinkTextView.backgroundColor = .clear
+        messageWithLinkTextView.dataDetectorTypes = [.link] // Enable all links
+        messageWithLinkTextView.delegate = self
         messageWithLinkTextView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(messageWithLinkTextView)
 
-        // Initialize and configure timeLabel
         timeLabel = UILabel()
         timeLabel.font = UIFont.systemFont(ofSize: 12)
         timeLabel.textColor = .lightGray
@@ -60,19 +50,15 @@ class ChatTableViewCell: UITableViewCell {
     }
 
     private func setupConstraints() {
-        // Constraints for nameLabel, messageLabel, and timeLabel
         NSLayoutConstraint.activate([
-            // Name label at the top
             nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
-            // Message label below the nameLabel
             messageWithLinkTextView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
             messageWithLinkTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             messageWithLinkTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
-            // Time label below the messageLabel
             timeLabel.topAnchor.constraint(equalTo: messageWithLinkTextView.bottomAnchor, constant: 4),
             timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             timeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
@@ -80,30 +66,76 @@ class ChatTableViewCell: UITableViewCell {
         ])
     }
 
-    func configureCell(with message: ChatMessage, isCurrentUser: Bool) {
-        nameLabel.text = isCurrentUser ? "You" : message.senderName
+    func configureCell(with message: ChatMessage, isCurrentUser: Bool, delegate: UITextViewDelegate) {
+        // Set the UITextView delegate to the passed-in delegate (usually the ChatViewController)
+        messageWithLinkTextView.delegate = delegate
 
-        if let attributedMessage = message.attributedMessage {
-            messageWithLinkTextView.attributedText = attributedMessage
-            messageWithLinkTextView.isUserInteractionEnabled = true
-            messageWithLinkTextView.dataDetectorTypes = .link
+        // Reset the cell to clear any previous configurations
+        resetCell()
+
+        // Check if the message is an invitation or a regular message
+        if message.isInvitation {
+            configureInvitationMessage(message: message, isCurrentUser: isCurrentUser)
         } else {
-            messageWithLinkTextView.text = message.messageText
-        }
-
-        timeLabel.text = DateFormatter.localizedString(from: message.timestamp, dateStyle: .short, timeStyle: .short)
-
-        // Adjust alignment dynamically
-        if isCurrentUser {
-            nameLabel.textAlignment = .right
-            messageWithLinkTextView.textAlignment = .right
-            timeLabel.textAlignment = .right
-        } else {
-            nameLabel.textAlignment = .left
-            messageWithLinkTextView.textAlignment = .left
-            timeLabel.textAlignment = .left
+            configureNormalMessage(message: message, isCurrentUser: isCurrentUser)
         }
     }
 
-}
+    private func configureNormalMessage(message: ChatMessage, isCurrentUser: Bool) {
+        messageWithLinkTextView.attributedText = NSAttributedString(string: message.messageText)
+        messageWithLinkTextView.dataDetectorTypes = [] // Disable link detection for normal messages
 
+        nameLabel.text = isCurrentUser ? "You" : message.senderName
+        timeLabel.text = DateFormatter.localizedString(from: message.timestamp, dateStyle: .short, timeStyle: .short)
+
+        nameLabel.textAlignment = isCurrentUser ? .right : .left
+        messageWithLinkTextView.textAlignment = isCurrentUser ? .right : .left
+        timeLabel.textAlignment = isCurrentUser ? .right : .left
+        
+        // Set background color for sender's message
+        if isCurrentUser {
+            contentView.backgroundColor = UIColor(red: 1.0, green: 0.95, blue: 0.9, alpha: 1.0) // Light brown
+        } else {
+            contentView.backgroundColor = .white // Default for receiver
+        }
+    }
+
+    private func configureInvitationMessage(message: ChatMessage, isCurrentUser: Bool) {
+        let attributedText = NSMutableAttributedString(string: message.messageText + "\n\n")
+        if let courseLink = message.courseLink {
+            attributedText.append(NSAttributedString(
+                string: "Click here to view course details",
+                attributes: [
+                    .link: URL(string: courseLink)!,
+                    .foregroundColor: UIColor.systemBlue
+                ]
+            ))
+        }
+
+        messageWithLinkTextView.attributedText = attributedText
+        messageWithLinkTextView.dataDetectorTypes = [.link] // Enable clickable links
+
+        nameLabel.text = isCurrentUser ? "You" : message.senderName
+        timeLabel.text = DateFormatter.localizedString(from: message.timestamp, dateStyle: .short, timeStyle: .short)
+
+        // Adjust alignment
+        nameLabel.textAlignment = isCurrentUser ? .right : .left
+        messageWithLinkTextView.textAlignment = isCurrentUser ? .right : .left
+        timeLabel.textAlignment = isCurrentUser ? .right : .left
+        
+        // Set background color for sender's message
+        if isCurrentUser {
+            contentView.backgroundColor = UIColor(red: 1.0, green: 0.95, blue: 0.9, alpha: 1.0) // Light brown color
+        } else {
+            contentView.backgroundColor = .white // Default for receiver
+        }
+    }
+
+    private func resetCell() {
+        nameLabel.text = nil
+        timeLabel.text = nil
+        messageWithLinkTextView.attributedText = nil
+        messageWithLinkTextView.dataDetectorTypes = [] // Clear links
+        messageWithLinkTextView.textAlignment = .left
+    }
+}

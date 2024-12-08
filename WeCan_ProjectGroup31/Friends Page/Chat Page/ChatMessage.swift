@@ -7,23 +7,29 @@
 
 import Foundation
 import FirebaseFirestore
-import FirebaseFirestore
 
-struct ChatMessage: Codable {
-    @DocumentID var id: String?
+struct ChatMessage {
+    var id: String? // Firestore document ID
     var senderID: String
     var senderName: String
     var messageText: String
     var timestamp: Date
-    var courseID: String?  //Adela: variable for course ID, which is optional
-    var courseLink: String? //Adela: Store the course link explicitly
-    
-    //Adela: For rich text
+    var courseID: String?  // Adela: set as Optional for invitation messages
+    var courseLink: String?  // Adela: set as Optional for invitation messages
+
+    // Determine if this is an invitation message
+    var isInvitation: Bool {
+        return courseID != nil || courseLink != nil
+    }
+
+    // Adela: Generate attributed message for rich text
     var attributedMessage: NSAttributedString? {
         return ChatMessage.createAttributedMessage(text: messageText, courseID: courseID)
     }
-    
-    init(senderID: String, senderName: String, messageText: String, timestamp: Date, courseID: String? = nil, courseLink: String? = nil) {
+
+    // Initializer
+    init(id: String? = nil, senderID: String, senderName: String, messageText: String, timestamp: Date, courseID: String? = nil, courseLink: String? = nil) {
+        self.id = id
         self.senderID = senderID
         self.senderName = senderName
         self.messageText = messageText
@@ -31,15 +37,12 @@ struct ChatMessage: Codable {
         self.courseID = courseID
         self.courseLink = courseLink
     }
-    
-    // Adela: Create the attributed message dynamically
+
+    // Static method to create attributed text for invitation messages
     static func createAttributedMessage(text: String, courseID: String?) -> NSAttributedString? {
         guard let courseID = courseID else { return nil }
 
-        // Create a base attributed string
         let attributedText = NSMutableAttributedString(string: text + "\n\n")
-
-        // Add clickable course name with the course link
         let courseName = "Click here to view course details"
         let courseLink = "course://\(courseID)"
 
@@ -54,5 +57,33 @@ struct ChatMessage: Codable {
 
         return attributedText
     }
+}
 
+extension ChatMessage {
+    // Parse a Firestore document into a ChatMessage instance
+    static func fromFirestore(document: QueryDocumentSnapshot) -> ChatMessage? {
+        let data = document.data()
+        guard
+            let senderID = data["senderID"] as? String,
+            let senderName = data["senderName"] as? String,
+            let messageText = data["messageText"] as? String,
+            let timestamp = (data["timestamp"] as? Timestamp)?.dateValue()
+        else {
+            print("Error: Failed to parse ChatMessage from Firestore data.")
+            return nil
+        }
+
+        let courseID = data["courseID"] as? String
+        let courseLink = data["courseLink"] as? String
+
+        return ChatMessage(
+            id: document.documentID,
+            senderID: senderID,
+            senderName: senderName,
+            messageText: messageText,
+            timestamp: timestamp,
+            courseID: courseID,
+            courseLink: courseLink
+        )
+    }
 }

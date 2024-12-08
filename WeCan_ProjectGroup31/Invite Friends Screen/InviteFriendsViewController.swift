@@ -61,6 +61,24 @@ class InviteFriendsViewController: UIViewController {
             noFriendsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24), // Add left padding
             noFriendsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24) // Add right padding
         ])
+        
+        // Add home button to navigation bar
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        let homeButton = UIBarButtonItem(
+            image: UIImage(systemName: "house.fill"),
+            style: .plain,
+            target: self,
+            action: #selector(onTapHomeButton)
+        )
+        navigationItem.rightBarButtonItem = homeButton
+    }
+    
+    @objc private func onTapHomeButton() {
+        let homePageVC = HomePageViewController()
+        navigationController?.pushViewController(homePageVC, animated: true)
     }
 
     private func fetchFriends() {
@@ -178,7 +196,7 @@ extension InviteFriendsViewController: UITableViewDelegate, UITableViewDataSourc
         // Construct the pre-generated message with a clickable link to the course page
         let courseID = course.id
         let courseName = course.name
-        let message = "I found an interesting course! Let's learn new skills together!"
+        let message = "Hey! I found an interesting course! Let's learn new skills together!🤩"
         
         let attributedText = NSMutableAttributedString(string: "\(message)\n\n")
         attributedText.append(NSAttributedString(string: courseName, attributes: [
